@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Collectable : MonoBehaviour
 {
     public GameObject pickUI;
-    public GameObject pickingUpBar;
+    //public GameObject pickingUpBar;
     public float pickingUpTime = 0.5f;
     // Start is called before the first frame update
     void Start()
@@ -39,20 +39,23 @@ public class Collectable : MonoBehaviour
     }
 
 
-    void showPickingUpBar()
+    void showPickingUpBar(GameObject pickingUpBar)
     {
+        pickingUpBar.SetActive(true);
         Image pickingUpImage = pickingUpBar.GetComponentInChildren<Image>();
         pickingUpImage.fillAmount = 0;
         DOTween.To(() => pickingUpImage.fillAmount, x => pickingUpImage.fillAmount = x, 1, pickingUpTime);
 
     }
-    public IEnumerator startPicking()
+    public IEnumerator startPicking(GameObject pickingUpBar)
     {
         pickUI.SetActive(false);
-        pickingUpBar.SetActive(true);
-        showPickingUpBar();
+        //pickingUpBar.SetActive(true);
+        showPickingUpBar(pickingUpBar);
         yield return new WaitForSeconds(pickingUpTime);
         Inventory.Instance.addItem("leave", 1);
+
+        pickingUpBar.SetActive(false);
         Destroy(gameObject);
     }
     public void showPickupUI()
@@ -64,7 +67,7 @@ public class Collectable : MonoBehaviour
     public void hidePickupUI()
     {
 
-        pickingUpBar.SetActive(false);
+        //pickingUpBar.SetActive(false);
         //show pick up
         pickUI.SetActive(false);
     }

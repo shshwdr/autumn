@@ -8,6 +8,13 @@ public class PlayerPickup : MonoBehaviour
     Collectable lastClosest;
     [HideInInspector]
     public bool isPickingUp;
+    public GameObject pickingUpBar;
+    Animator animator;
+    private void Awake()
+    {
+        pickingUpBar.SetActive(false);
+        animator = GetComponentInChildren<Animator>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -49,8 +56,11 @@ public class PlayerPickup : MonoBehaviour
     IEnumerator pickupItem()
     {
         isPickingUp = true;
-        yield return  lastClosest.startPicking();
+        animator.SetBool("finding", true);
+        GetComponent<PlayerMove>(). testFlip(lastClosest.transform.position - transform.position);
+        yield return  lastClosest.startPicking(pickingUpBar);
         isPickingUp = false;
+        animator.SetBool("finding", false);
     }
     public void addCanPickup(Collectable c)
     {
