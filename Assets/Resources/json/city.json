@@ -1,0 +1,84 @@
+{
+    "allCity":
+    [
+      {
+        "name": "start town",
+        "px": 0,
+        "py": 0,
+        "collectable": [20,15,5,0],
+        "monsters":[5,3],
+        "maxMonsterNumber":[2,2]
+      },{
+        "name": "next town1",
+        "px": 0,
+        "py": 1,
+        "collectable": [15,15,5,0],
+        "monsters":[6,2,5],
+        "maxMonsterNumber":[3,3,2]
+      },{
+        "name": "next town2",
+        "px": 1,
+        "py": 0,
+        "collectable": [15,16,5,0],
+        "monsters":[6,3,4],
+        "maxMonsterNumber":[3,3,2]
+      },{
+        "name": "rest town1",
+        "px": 2,
+        "py": 2,
+        "collectable": [5,15,7,2],
+        "monsters":[8,6,3],
+        "maxMonsterNumber":[3,3,2]
+      },{
+        "name": "rest town2",
+        "px": 4,
+        "py": 0,
+        "collectable": [7,15,8,2],
+        "monsters":[9,3,6],
+        "maxMonsterNumber":[4,3,2]
+      },{
+        "name": "rest town3",
+        "px": 0,
+        "py": 4,
+        "collectable": [6,16,5,2],
+        "monsters":[10,5,3],
+        "maxMonsterNumber":[4,3,2]
+      },{
+        "name": "center town1",
+        "px": 4,
+        "py": 5,
+        "collectable": [5,16,5,1],
+        "monsters":[0,10,3,4],
+        "maxMonsterNumber":[5,4,3,2]
+      },{
+        "name": "center town2",
+        "px": 7,
+        "py": 1,
+        "collectable": [4,10,10,1],
+        "monsters":[0,8,4,6,6],
+        "maxMonsterNumber":[3,4,4,3,3]
+      },{
+        "name": "center town3",
+        "px": 10,
+        "py": 2,
+        "collectable": [4,10,10,0],
+        "monsters":[0,0,8,8,10],
+        "maxMonsterNumber":[3,4,4,3,3]
+      },{
+        "name": "center town4",
+        "px": 7,
+        "py": 6,
+        "collectable": [3,8,8,0],
+        "monsters":[0,0,7,8,10],
+        "maxMonsterNumber":[3,4,4,3,3]
+      },{
+        "name": "final town",
+        "px": 12,
+        "py": 6,
+        "collectable": [0,0,0,0],
+        "monsters":[5,3],
+        "maxMonsterNumber":[3,2],
+        "isDestination":true
+      }
+    ]
+  }

@@ -1,0 +1,57 @@
+{
+    "allNPC":
+    [
+      {
+        "name": "leader",
+        "displayName":"Village Leader",
+        "behaviors":[
+          {
+            "time":9,
+            "destination":"leaderHomeOut",
+            "dialogue":"tradeLeaves"
+          },
+          {
+            "time":12,
+            "destination":"leaderHome",
+            "shouldHide":true
+          }
+        ]
+      },{
+        "name": "dog",
+        "displayName":"Unicorns",
+        "attack":20,
+        "maxHP":7,
+        "basicHitRate":0.3,
+        "basicAvoidRate":0.8,
+        "reward": [1,5,2,0],
+        "id":1
+      },{
+        "name": "mushroom",
+        "displayName":"Swamp Unicorns",
+        "attack":25,
+        "maxHP":12,
+        "basicHitRate":0.6,
+        "basicAvoidRate":0.8,
+        "reward": [6,0,0,0],
+        "id":2
+      },{
+        "name": "crow",
+        "displayName":"Deamon Deers",
+        "attack":25,
+        "maxHP":15,
+        "basicHitRate":0.6,
+        "basicAvoidRate":0.8,
+        "reward": [2,8,4,0],
+        "id":3
+      },{
+        "name": "dragon",
+        "displayName":"Empire Bucks",
+        "attack":30,
+        "maxHP":20,
+        "basicHitRate":0.7,
+        "basicAvoidRate":0.6,
+        "reward": [8,8,0,1],
+        "id":4
+      }
+    ]
+  }
