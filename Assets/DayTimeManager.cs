@@ -1,3 +1,4 @@
+using Pool;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class DayTime
     public int day;
     public int hour;
     public int minute;
+    public int weekday { get { return day % DayTimeManager.WEEKDAYS.Length; } }
     public DayTime(float time)
     {
         day = Mathf.FloorToInt( time / (60 * 24*60));
@@ -53,13 +55,17 @@ public class DayTime
 
 
 
-public class DayTimeManager : MonoBehaviour
+public class DayTimeManager : Singleton<DayTimeManager>
 {
+    static public string[] WEEKDAYS = new string[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Sunday" };
     public int startHour = 4;
     float time;
     public int timeScaleScale = 1;
     int timeScale = 60 * 24 ;//2 minutes in real life= 1 day in game
     public WorldColorController worldColor;
+    int lastHour = -1;
+    int lastDay = -1;
+    public DayTime gameTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -70,13 +76,28 @@ public class DayTimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (DialogueUtils.Instance.isInDialogue)
+        {
+            return;
+        }
         time += Time.deltaTime*timeScale;
-        var gameTime = currentTime();
-        var output = JsonUtility.ToJson(currentTime(), true);
+        gameTime = currentTime();
+        var output = JsonUtility.ToJson(gameTime, true);
         //Debug.Log(time + " "+time * timeScale);
         //Debug.Log(output);
         Clock.Instance.updateTime(gameTime.hour, gameTime.minute);
         worldColor.updateTime(gameTime);
+        if (lastHour != gameTime.hour)
+        {
+            EventPool.Trigger("hourChange");
+            lastHour = gameTime.hour;
+        }
+        if (lastDay != gameTime.day)
+        {
+
+            EventPool.Trigger("dayChange");
+            lastDay = gameTime.day;
+        }
     }
 
     public DayTime currentTime()

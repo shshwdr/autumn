@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerPickup : MonoBehaviour
 {
-    List<Collectable> collectables = new List<Collectable>();
-    Collectable lastClosest;
+    List<InteractiveItem> collectables = new List<InteractiveItem>();
+    InteractiveItem lastClosest;
     [HideInInspector]
     public bool isPickingUp;
     public GameObject pickingUpBar;
@@ -48,26 +48,35 @@ public class PlayerPickup : MonoBehaviour
         {
             if (lastClosest)
             {
-                StartCoroutine(pickupItem());
+                GetComponent<PlayerMove>().testFlip(lastClosest.transform.position - transform.position);
+                lastClosest.interact(this);
+                //lastClosest.startPicking(this);
+                //StartCoroutine(pickupItem());
             }
         }
     }
 
-    IEnumerator pickupItem()
+
+
+    public void startPickupItem()
     {
         isPickingUp = true;
         animator.SetBool("finding", true);
-        GetComponent<PlayerMove>(). testFlip(lastClosest.transform.position - transform.position);
-        yield return  lastClosest.startPicking(pickingUpBar);
+       // yield return  lastClosest.startPicking(pickingUpBar);
+    }
+
+    public void finishPickupItem()
+    {
+
         isPickingUp = false;
         animator.SetBool("finding", false);
     }
-    public void addCanPickup(Collectable c)
+    public void addCanPickup(InteractiveItem c)
     {
         collectables.Add(c);
     }
 
-    public void removeCanPickup(Collectable c)
+    public void removeCanPickup(InteractiveItem c)
     {
         collectables.Remove(c);
     }

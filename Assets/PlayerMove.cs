@@ -4,23 +4,15 @@ using UnityEngine;
 
 public class PlayerMove : CharacterMove
 {
-    public float movementSpeed = 1f;
-    Rigidbody2D rb;
     Vector2 movement;
     PlayerPickup pickup;
-    Animator animator;
     public bool isFacingRight;
     // Start is called before the first frame update
-    void Start()
+
+    protected override void Awake()
     {
-        
-    }
-    private void Awake()
-    {
+        base.Awake();
         pickup = GetComponent<PlayerPickup>();
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponentInChildren<Animator>();
-        spriteObject = animator.gameObject;
     }
 
     bool canMove()

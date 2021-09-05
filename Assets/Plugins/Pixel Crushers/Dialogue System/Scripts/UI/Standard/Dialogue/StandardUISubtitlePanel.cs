@@ -20,6 +20,9 @@ namespace PixelCrushers.DialogueSystem
         [Tooltip("(Optional) Image for actor's portrait.")]
         public UnityEngine.UI.Image portraitImage;
 
+        [Tooltip("(Optional) Image for actor's portrait.")]
+        public UnityEngine.UI.Image friendship;
+
         [Tooltip("(Optional) Text element for actor's name.")]
         public UITextField portraitName;
 
@@ -481,6 +484,22 @@ namespace PixelCrushers.DialogueSystem
                     portraitImage.sprite = sprite;
                     Tools.SetGameObjectActive(portraitImage, sprite != null);
                 }
+
+                if (friendship != null)
+                {
+                    var hasFriendship = DialogueLua.GetActorField(subtitle.speakerInfo.nameInDatabase, "friendship"); 
+                    if(!hasFriendship.Equals( Lua.NoResult))
+                    {
+                        friendship.gameObject.SetActive(true);
+                        var value = DialogueLua.GetActorField(subtitle.speakerInfo.nameInDatabase, "friendship").asInt;
+                        friendship.fillAmount = (float)value / 100f;
+                    }
+                    else
+                    {
+                        friendship.gameObject.SetActive(false);
+                    }
+                }
+
                 portraitActorName = subtitle.speakerInfo.nameInDatabase;
                 if (portraitName.text != subtitle.speakerInfo.Name)
                 {

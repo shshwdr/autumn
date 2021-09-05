@@ -11,6 +11,17 @@ public class Utils : MonoBehaviour
         return Random.Range(0, 2) > 0;
     }
 
+    static public bool arrayContains<T>(T[] array, T target)
+    {
+        foreach(T t in array)
+        {
+            if (target .Equals( t))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     static public int findClosestIndex<T>(Transform targetTransform, List<T> candicateTransforms) where T : MonoBehaviour
     {
         int res = 0;

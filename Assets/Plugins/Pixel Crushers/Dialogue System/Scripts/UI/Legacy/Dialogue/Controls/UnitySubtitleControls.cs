@@ -29,6 +29,7 @@ namespace PixelCrushers.DialogueSystem.UnityGUI
         /// </summary>
         public GUILabel portraitImage;
 
+
         /// <summary>
         /// The label that will show the name of the speaker.
         /// </summary>
@@ -73,6 +74,7 @@ namespace PixelCrushers.DialogueSystem.UnityGUI
                 var sprite = subtitle.GetSpeakerPortrait();
                 portraitImage.image = (sprite != null) ? sprite.texture : null;
             }
+            
             if (portraitName != null) portraitName.text = subtitle.speakerInfo.Name;
             if (line != null) line.SetFormattedText(subtitle.formattedText);
         }

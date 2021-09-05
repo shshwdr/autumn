@@ -6,13 +6,46 @@
         "displayName":"Village Leader",
         "initPosition":"leaderHome",
         "behaviors":[
+          
           {
-            "time":9,
-            "destination":"leaderHomeOut",
-            "dialogue":"tradeLeaves"
+            "days":[2],
+            "time":8,
+            "destination":"pumpkinCurveDay",
+            "dialogue":"pumpkinCurveDay"
           },
           {
-            "time":12,
+            "days":[2],
+            "time":15,
+            "destination":"pumpkinCurveDay",
+            "dialogue":"pumpkinCurveDay",
+            "shouldHide":true
+          },
+          {
+            "ignoreDays":[2],
+            "weekdays":[1],
+            "time":7,
+            "destination":"leaderHomeOut2",
+            "dialogue":"vacation"
+          },
+          {
+            "ignoreDays":[2],
+            "weekdays":[1],
+            "time":17,
+            "destination":"leaderHome",
+            "dialogue":"vacation",
+            "shouldHide":true
+          },
+
+          {
+            "ignoreDays":[2],
+            "ignoreWeekdays":[1],
+            "time":8,
+            "destination":"leaderHomeOut"
+          },
+          {
+            "ignoreDays":[2],
+            "ignoreWeekdays":[1],
+            "time":15,
             "destination":"leaderHome",
             "shouldHide":true
           }

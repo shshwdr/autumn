@@ -17,6 +17,7 @@ namespace PixelCrushers.DialogueSystem
             EditorGUILayout.LabelField("UI Elements", EditorStyles.boldLabel);
             EditorGUILayout.PropertyField(serializedObject.FindProperty("panel"), true);
             EditorGUILayout.PropertyField(serializedObject.FindProperty("portraitImage"), true);
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("friendship"), true);
             EditorGUILayout.PropertyField(serializedObject.FindProperty("portraitName"), true);
             EditorGUILayout.PropertyField(serializedObject.FindProperty("subtitleText"), true);
             EditorGUILayout.PropertyField(serializedObject.FindProperty("continueButton"), true);

@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class CharacterMove : MonoBehaviour
 {
+    public float movementSpeed = 1f;
 
     protected GameObject spriteObject;
     public bool facingRight = true;
+    protected Animator animator;
+    protected Rigidbody2D rb;
+    protected virtual void Awake()
+    {
+
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponentInChildren<Animator>();
+        spriteObject = animator.gameObject;
+    }
     void flip()
     {
         facingRight = !facingRight;
