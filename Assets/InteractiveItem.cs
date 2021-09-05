@@ -81,12 +81,15 @@ public class InteractiveItem:MonoBehaviour
     public void disableInteractive()
     {
         isInteractiveDisabled = true;
-        playerPickup.removeCanPickup(this);
+        if (playerPickup)
+        {
+            playerPickup.removeCanPickup(this);
+        }
         hidePickupUI();
     }
 
     public void enableInteractive()
     {
-        isInteractiveDisabled = true;
+        isInteractiveDisabled = false;
     }
 }

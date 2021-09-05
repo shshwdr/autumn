@@ -394,14 +394,14 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: Actor["leader"].friendship = Actor["leader"].friendship + 10
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
         x: 27.219513
-        y: 149
+        y: 147.73418
         width: 160
         height: 30
     - id: 3
@@ -459,7 +459,7 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: 
+      userScript: Actor["leader"].friendship = Actor["leader"].friendship + 10
       onExecute:
         m_PersistentCalls:
           m_Calls: []

@@ -11,11 +11,14 @@ public class NPC : CharacterMove
     public string name;
     bool isActive;
     Talkable talkable;
+    NPCBehavior currentBehavior;
+    NPCPathFinding pathFinding;
 
     protected override void Awake()
     {
         base.Awake();
         talkable = GetComponent<Talkable>();
+        pathFinding = GetComponent<NPCPathFinding>();
     }
         // Start is called before the first frame update
         void Start()
@@ -58,20 +61,39 @@ public class NPC : CharacterMove
 
     IEnumerator moveTo(NPCBehavior behavior)
     {
+        pathFinding.setTarget(ScenePositionManager.Instance.positionDict[behavior.destination]);
         //move to destination
         isActive = true;
+        currentBehavior = behavior;
 
         talkable.enableInteractive();
         spriteObject.SetActive(true);
-        rb.DOMove(ScenePositionManager.Instance.positionDict[behavior.destination].position, 1);
-        yield return new WaitForSeconds(1);
+        yield break;
+        //rb.DOMove(ScenePositionManager.Instance.positionDict[behavior.destination].position, 1);
+        //yield return new WaitForSeconds(1);
         //transform.position = ScenePositionManager.Instance.positionDict[behavior.destination].position;
-        if (behavior.shouldHide)
+        //if (behavior.shouldHide)
+        //{
+        //    spriteObject.SetActive(false);
+        //    talkable.disableInteractive();
+
+        //}
+    }
+
+    public void finishPath()
+    {
+        if (currentBehavior == null)
+        {
+            Debug.LogError("no current behanior");
+            return;
+        }
+        if (currentBehavior.shouldHide)
         {
             spriteObject.SetActive(false);
             talkable.disableInteractive();
 
         }
+        currentBehavior = null;
     }
     // Update is called once per frame
     void Update()

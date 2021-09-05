@@ -32,25 +32,14 @@ public class CharacterMove : MonoBehaviour
     }
     public void testFlip(Vector3 movement)
     {
-        if (facingRight == false && movement.x > 0f)
+        if (facingRight == false && movement.x > 0.1f)
         {
             flip();
         }
-        if (facingRight == true && movement.x < 0f)
+        if (facingRight == true && movement.x < -0.1f)
         {
             flip();
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

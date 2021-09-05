@@ -37,7 +37,7 @@ void Start()
         float rotationHours = ((360.0f / 12.0f) * hour) + ((360.0f / (60.0f * 12.0f)) * minutes);
 
         //-- draw pointers
-        pointerSeconds.transform.localEulerAngles = new Vector3(0.0f, 0.0f, -rotationSeconds);
+        //pointerSeconds.transform.localEulerAngles = new Vector3(0.0f, 0.0f, -rotationSeconds);
         pointerMinutes.transform.localEulerAngles = new Vector3(0.0f, 0.0f, -rotationMinutes);
         pointerHours.transform.localEulerAngles = new Vector3(0.0f, 0.0f, -rotationHours);
 
