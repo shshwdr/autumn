@@ -490,13 +490,13 @@ namespace PixelCrushers.DialogueSystem
                     var hasFriendship = DialogueLua.GetActorField(subtitle.speakerInfo.nameInDatabase, "friendship"); 
                     if(!hasFriendship.Equals( Lua.NoResult))
                     {
-                        friendship.gameObject.SetActive(true);
+                        friendship.transform.parent.gameObject.SetActive(true);
                         var value = DialogueLua.GetActorField(subtitle.speakerInfo.nameInDatabase, "friendship").asInt;
                         friendship.fillAmount = (float)value / 100f;
                     }
                     else
                     {
-                        friendship.gameObject.SetActive(false);
+                        friendship.transform.parent. gameObject.SetActive(false);
                     }
                 }
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using PixelCrushers.DialogueSystem;
 
 public class NPC : CharacterMove
 {
@@ -68,6 +69,16 @@ public class NPC : CharacterMove
 
         talkable.enableInteractive();
         spriteObject.SetActive(true);
+
+        if (currentBehavior.dialogue != null)
+        {
+            DialogueLua.SetActorField(name, "dialog", currentBehavior.dialogue);
+        }
+        else
+        {
+
+            DialogueLua.SetActorField(name, "dialog", "");
+        }
         yield break;
         //rb.DOMove(ScenePositionManager.Instance.positionDict[behavior.destination].position, 1);
         //yield return new WaitForSeconds(1);

@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using LitJson;
+using PixelCrushers.DialogueSystem;
+using Pool;
+
 public class NPCBehavior {
 
     public int[] weekdays;
@@ -42,10 +45,21 @@ public class NPCManager : Singleton<NPCManager>
             npcDict[info.name] = info;
         }
     }
+
+    public void resetNPCFriendshipIncrease()
+    {
+        foreach(var name in npcDict.Keys)
+        {
+            DialogueLua.SetActorField(name, "canTalkFriend",true);
+            DialogueLua.SetActorField(name, "canTakeGift",true);
+            
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        EventPool.OptIn("dayChange", resetNPCFriendshipIncrease);
     }
 
     // Update is called once per frame

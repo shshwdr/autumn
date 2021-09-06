@@ -40,7 +40,8 @@
             "ignoreDays":[2],
             "ignoreWeekdays":[1],
             "time":8,
-            "destination":"leaderHomeOut"
+            "destination":"leaderHomeOut",
+            "dialogue":""
           },
           {
             "ignoreDays":[2],

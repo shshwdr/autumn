@@ -1,3 +1,4 @@
+using PixelCrushers.DialogueSystem;
 using Pool;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,16 +22,40 @@ public class Inventory : Singleton<Inventory>
         }
         return false;
     }
+
+
+    public void updateSelectedItem(string name)
+    {
+        selectedItemName = name;
+
+        DialogueLua.SetVariable("holdingItem", name);
+    }
+
+    public void sendGift()
+    {
+        if (selectedItemName == "")
+        {
+            Debug.LogError("you send what a you send");
+            return;
+        }
+        //sometimes should not be able to send
+        consumeItem(selectedItemName, 1);
+
+        selectedItemName = "";
+
+        EventPool.Trigger("updateInventory");
+    }
+
     public void select(string name)
     {
         if(selectedItemName == name)
         {
-            selectedItemName = "";
+            updateSelectedItem("");
         }
         else
         {
 
-            selectedItemName = name;
+            updateSelectedItem(name);
         }
         EventPool.Trigger("updateInventory");
     }
@@ -47,6 +72,22 @@ public class Inventory : Singleton<Inventory>
         else if (itemValueDict.Count < inventoryUnlockedCellCount)
         {
             itemValueDict[itemName] = value;
+        }
+        EventPool.Trigger("updateInventory");
+    }
+
+    public void consumeItem(string itemName, int value = 1)
+    {
+        if(!itemValueDict.ContainsKey(itemName) || itemValueDict[itemName] < value)
+        {
+            Debug.LogError("not enough item to consume");
+            return;
+        }
+        itemValueDict[itemName] -= value;
+
+        if (itemValueDict[itemName] <= 0)
+        {
+            itemValueDict.Remove(itemName);
         }
         EventPool.Trigger("updateInventory");
     }
