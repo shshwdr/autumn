@@ -1,26 +1,40 @@
+using LitJson;
 using PixelCrushers.DialogueSystem;
 using Pool;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public class ItemInfo
+{
+    public string name;
+    public string displayName;
+    public string description;
+    public int amount;
+}
+public class AllItemInfo
+{
+    public List<ItemInfo> allItem;
+}
 public class Inventory : Singleton<Inventory>
 {
-    public Dictionary<string, int> itemValueDict = new Dictionary<string, int>();
+    public Dictionary<string, ItemInfo> itemDict = new Dictionary<string, ItemInfo>();
 
     public int inventoryUnlockedCellCount = 2;
     public string selectedItemName;
     public bool canAddItem(string itemName, int value = 1)
     {
-        if (itemValueDict.ContainsKey(itemName))
-        {
-            return true;
-        }
-        if (itemValueDict.Count < inventoryUnlockedCellCount)
-        {
-            return true;
-        }
-        return false;
+        return true;
+        //if (itemValueDict.ContainsKey(itemName))
+        //{
+        //    return true;
+        //}
+        //if (itemValueDict.Count < inventoryUnlockedCellCount)
+        //{
+        //    return true;
+        //}
+        //return false;
     }
 
 
@@ -65,36 +79,41 @@ public class Inventory : Singleton<Inventory>
         {
             Debug.LogError("can't add item " + itemName);
         }
-        if (itemValueDict.ContainsKey(itemName))
+        if (itemDict.ContainsKey(itemName))
         {
-            itemValueDict[itemName] += value;
+            itemDict[itemName].amount += value;
         }
-        else if (itemValueDict.Count < inventoryUnlockedCellCount)
-        {
-            itemValueDict[itemName] = value;
-        }
+        //else if (itemDict.Count < inventoryUnlockedCellCount)
+        //{
+        //    itemDict[itemName] = value;
+        //}
         EventPool.Trigger("updateInventory");
     }
 
     public void consumeItem(string itemName, int value = 1)
     {
-        if(!itemValueDict.ContainsKey(itemName) || itemValueDict[itemName] < value)
+        if(!itemDict.ContainsKey(itemName) || itemDict[itemName].amount < value)
         {
             Debug.LogError("not enough item to consume");
             return;
         }
-        itemValueDict[itemName] -= value;
+        itemDict[itemName].amount -= value;
 
-        if (itemValueDict[itemName] <= 0)
-        {
-            itemValueDict.Remove(itemName);
-        }
+        //if (itemValueDict[itemName] <= 0)
+        //{
+        //    itemValueDict.Remove(itemName);
+        //}
         EventPool.Trigger("updateInventory");
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+        string text = Resources.Load<TextAsset>("json/Item").text;
+        var allNPCs = JsonMapper.ToObject<AllItemInfo>(text);
+        foreach (ItemInfo info in allNPCs.allItem)
+        {
+            itemDict[info.name] = info;
+        }
     }
 
     // Update is called once per frame

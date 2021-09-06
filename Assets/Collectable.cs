@@ -1,4 +1,5 @@
 using DG.Tweening;
+using PixelCrushers.DialogueSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,6 +35,8 @@ public class Collectable : InteractiveItem
 
         yield return new WaitForSeconds(pickingUpTime);
         Inventory.Instance.addItem("leave", 1);
+        QuestManager.Instance.addQuestItem("leave", 1);
+        //DialogueLua.SetVariable("cleanedLeaves", DialogueLua.GetVariable("cleanedLeaves").asInt + 1);
         player.finishPickupItem();
         player.pickingUpBar.SetActive(false);
         Destroy(gameObject);

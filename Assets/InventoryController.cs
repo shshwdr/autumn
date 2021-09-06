@@ -9,16 +9,19 @@ public class InventoryController : MonoBehaviour
     public void updateInventory()
     {
         int i = 0;
-        foreach (var pair in Inventory.Instance.itemValueDict)
+        foreach (var pair in Inventory.Instance.itemDict)
         {
-            inventoryCells[i].gameObject.SetActive(true);
-            inventoryCells[i].updateCell(pair.Key, pair.Value);
-            i++;
+            if (pair.Value.amount > 0)
+            {
+                inventoryCells[i].gameObject.SetActive(true);
+                inventoryCells[i].updateCell(pair.Value);
+                i++;
+            }
         }
         for(;i< Inventory.Instance.inventoryUnlockedCellCount; i++)
         {
             inventoryCells[i].gameObject.SetActive(true);
-            inventoryCells[i].updateCell("", 0);
+            inventoryCells[i].updateCell(null);
         }
         for (; i < inventoryCells.Count; i++)
         {

@@ -13,26 +13,28 @@ public class InventoryCell : MonoBehaviour, IPointerEnterHandler
     public TMP_Text valueText;
     public GameObject explainPanel;
     public TMP_Text explainText;
+    public TMP_Text nameText;
     string name;
-    public void updateCell(string n, int value)
+    public void updateCell(ItemInfo info)
     {
-        name = n;
-        if(value == 0)
+        if(info == null)
         {
+            name = "";
             image.gameObject.SetActive(false);
             valueText.gameObject.SetActive(false);
 
         }
         else
         {
-
+            name = info.name;
             image.gameObject.SetActive(true);
             valueText.gameObject.SetActive(true);
-            valueText.text = value.ToString();
+            valueText.text = info.amount.ToString();
             image.sprite = Resources.Load<Sprite>("ItemIcon/" + name);
-            explainText.text = TextUtils.itemNameToExplaination[name];
+            explainText.text = info.description;
+            nameText.text = info.displayName;
         }
-        if(Inventory.Instance.selectedItemName!=""&& Inventory.Instance.selectedItemName == n)
+        if(Inventory.Instance.selectedItemName!=""&& Inventory.Instance.selectedItemName == name)
         {
 
             selectImage.gameObject.SetActive(true);

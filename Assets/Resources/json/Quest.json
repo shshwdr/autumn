@@ -1,0 +1,57 @@
+{
+    "allQuest":
+    [
+      {
+        "name": "cleanLeaves",
+        "displayName":"Clean Leaves",
+        "returnNPC":"leader",
+        "activateNext":"cleanLeaves2",
+        "reward":[
+          {
+            "type":"item",
+            "subtype":"rake",
+            "amount":1
+          },{
+            "type":"friendship",
+            "subtype":"leader",
+            "amount":10
+          }
+        ],
+        "entries":[
+          
+          {
+            "amount":2,
+            "type":"questItemAmount",
+            "subtype":"leave",
+            "text":"Clean {0} / {1} leaves."
+          }
+        ]
+      },
+      {
+        "name": "cleanLeaves2",
+        "displayName":"Clean Leaves",
+        "returnNPC":"leader",
+        "activateNext":"cleanLeaves2",
+        "reward":[
+          {
+            "type":"item",
+            "subtype":"rake",
+            "amount":1
+          },{
+            "type":"friendship",
+            "subtype":"leader",
+            "amount":10
+          }
+        ],
+        "entries":[
+          
+          {
+            "amount":4,
+            "type":"questItemAmount",
+            "subtype":"leave",
+            "text":"Clean {0} / {1} leaves."
+          }
+        ]
+      }
+    ]
+  }
