@@ -22,7 +22,11 @@ public class ItemAutoGeneration : MonoBehaviour
         foreach(var selected in selectedIndex)
         {
             var position = parent.GetChild(selected).position;
-            Instantiate(prefab, position, Quaternion.identity);
+            if (parent.GetChild(selected).childCount > 0)
+            {
+                continue;
+            }
+            Instantiate(prefab, position, Quaternion.identity, parent.GetChild(selected));
         }
     }
     void generateItems()

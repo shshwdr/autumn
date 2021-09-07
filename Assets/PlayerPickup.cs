@@ -1,3 +1,4 @@
+using Pool;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,10 +11,30 @@ public class PlayerPickup : MonoBehaviour
     public bool isPickingUp;
     public GameObject pickingUpBar;
     Animator animator;
+
+    CircleCollider2D triggerCollider;
+    public float handRange = 0.5f;
+    public float rakeRange = 1.5f;
     private void Awake()
     {
         pickingUpBar.SetActive(false);
         animator = GetComponentInChildren<Animator>();
+        triggerCollider = GetComponent<CircleCollider2D>();
+
+        EventPool.OptIn("updateInventory",updateRake);
+    }
+
+    void updateRake()
+    {
+        if (Inventory.Instance.hasRake())
+        {
+            triggerCollider.radius = rakeRange;
+        }
+        else
+        {
+
+            triggerCollider.radius = handRange;
+        }
     }
     // Start is called before the first frame update
     void Start()

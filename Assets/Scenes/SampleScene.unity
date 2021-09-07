@@ -1561,7 +1561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3266622150880353889, guid: 3bec368068a0ba94bb803f3c27489a6f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 3266622150880353889, guid: 3bec368068a0ba94bb803f3c27489a6f, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2275,7 +2275,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.04745568
+  m_Radius: 0.05
 --- !u!114 &659838229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2290,6 +2290,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPickingUp: 0
   pickingUpBar: {fileID: 1144702379}
+  handRange: 0.05
+  rakeRange: 0.35
 --- !u!50 &659838230
 Rigidbody2D:
   serializedVersion: 4
@@ -41959,8 +41961,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 532, y: 0}
+  m_SizeDelta: {x: 792, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1725954410
 MonoBehaviour:
@@ -43368,7 +43370,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.2
 --- !u!114 &1898283119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45888,7 +45890,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3266622150880353889, guid: 3bec368068a0ba94bb803f3c27489a6f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 3266622150880353889, guid: 3bec368068a0ba94bb803f3c27489a6f, type: 3}
       propertyPath: m_AnchoredPosition.y
