@@ -62,7 +62,9 @@ public class PlayerPickup : MonoBehaviour
     {
         isPickingUp = true;
         animator.SetBool("finding", true);
-       // yield return  lastClosest.startPicking(pickingUpBar);
+
+        animator.SetBool("hasRake", Inventory.Instance.hasRake());
+        // yield return  lastClosest.startPicking(pickingUpBar);
     }
 
     public void finishPickupItem()

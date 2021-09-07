@@ -4,12 +4,23 @@
       {
         "name": "leave",
         "displayName":"Leave",
-        "description":"Leave of maple"
+        "description":"Leave of maple",
+        "pickup":"Clean Leaves",
+        "pickupTime":1
       },
       {
         "name": "rake",
         "displayName":"Rake",
-        "description":"Can reach items far away"
+        "description":"Can reach items far away",
+        "pickup":"Pickup Rake",
+        "pickupTime":0.3
+      },
+      {
+        "name": "carrot",
+        "displayName":"Carrot",
+        "description":"Not my favorite vegetable.",
+        "pickup":"Harvest Carrot",
+        "pickupTime":2
       }
     ]
   }

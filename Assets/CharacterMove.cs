@@ -8,7 +8,8 @@ public class CharacterMove : MonoBehaviour
 
     protected GameObject spriteObject;
     public bool facingRight = true;
-    protected Animator animator;
+    [HideInInspector]
+    public Animator animator;
     protected Rigidbody2D rb;
     protected virtual void Awake()
     {

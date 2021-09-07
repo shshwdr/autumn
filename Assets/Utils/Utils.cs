@@ -13,9 +13,9 @@ public class Utils : MonoBehaviour
 
     static public bool arrayContains<T>(T[] array, T target)
     {
-        foreach(T t in array)
+        foreach (T t in array)
         {
-            if (target .Equals( t))
+            if (target.Equals(t))
             {
                 return true;
             }
@@ -26,7 +26,7 @@ public class Utils : MonoBehaviour
     {
         int res = 0;
         float closestDistance = float.MaxValue;
-        for(int i= 0; i < candicateTransforms.Count; i++)
+        for (int i = 0; i < candicateTransforms.Count; i++)
         {
             float distance = (candicateTransforms[i].transform.position - targetTransform.position).magnitude;
             if (distance < closestDistance)
@@ -60,17 +60,17 @@ public class Utils : MonoBehaviour
         return (T)values.GetValue(random);
     }
 
-    static float snapFloat(float gridSize,float origin)
+    static float snapFloat(float gridSize, float origin)
     {
         return Mathf.Round(origin / gridSize) * gridSize;
     }
 
     static float snapFloatCenter(float gridSize, float origin)
     {
-        return Mathf.Round((origin - gridSize / 2f) / gridSize) * gridSize + gridSize/2f;
+        return Mathf.Round((origin - gridSize / 2f) / gridSize) * gridSize + gridSize / 2f;
     }
 
-    static float floatToGridIndexCenter(float gridSize,float origin)
+    static float floatToGridIndexCenter(float gridSize, float origin)
     {
         return Mathf.RoundToInt((origin - gridSize / 2f) / gridSize);
     }
@@ -86,7 +86,7 @@ public class Utils : MonoBehaviour
     }
     public static int distanceCenterToIndex(float gridSize, float distance)
     {
-        return Mathf.RoundToInt((distance - gridSize/2f) / gridSize);
+        return Mathf.RoundToInt((distance - gridSize / 2f) / gridSize);
     }
 
     public static Vector3 snapToGridCenter(float gridSize, Vector3 origin)
@@ -98,12 +98,41 @@ public class Utils : MonoBehaviour
     {
         return new Vector2(floatToGridIndexCenter(gridSize, origin.x), floatToGridIndexCenter(gridSize, origin.y));
     }
+    public static List<int> randomMultipleIndex(int count, int selectCount)
+    {
+  //      for i := 1 to k
+  //    R[i] := S[i]
 
+  //// replace elements with gradually decreasing probability
+  //          for i := k + 1 to n
+  //  (*randomInteger(a, b) generates a uniform integer from the inclusive range { a, ..., b}
+  //      *)
+  //  j:= randomInteger(1, i)
+  //  if j <= k
+  //      R[j] := S[i]
+        List<int> res = new List<int>();
+        for (int i = 0; i < selectCount; i++)
+        {
+            res.Add(i);
+
+        }
+        for(int i = selectCount; i < count; i++)
+        {
+            int j = Random.Range(0, i);
+            if (j < selectCount)
+            {
+                res[j] = i;
+            }
+        }
+
+
+        return res;
+    }
     public static bool nextToPositionInGrid(float gridSize, Vector3 p1, Vector3 p2)
     {
         var positionIndex1 = positionToGridIndexCenter2d(gridSize, p1);
         var positionIndex2 = positionToGridIndexCenter2d(gridSize, p2);
-        if((positionIndex1 - positionIndex2).magnitude <= 1.1f)
+        if ((positionIndex1 - positionIndex2).magnitude <= 1.1f)
         {
             return true;
         }
@@ -113,14 +142,14 @@ public class Utils : MonoBehaviour
     public static Vector2 chaseDir2d(Vector3 chaser, Vector3 chasee)
     {
         var diff = chasee - chaser;
-        if(Mathf.Abs( diff.x) > Mathf.Abs(diff.y))
+        if (Mathf.Abs(diff.x) > Mathf.Abs(diff.y))
         {
             return new Vector2(diff.x > 0 ? 1 : -1, 0);
         }
         else
         {
 
-            return new Vector2(0,diff.y > 0 ? 1 : -1);
+            return new Vector2(0, diff.y > 0 ? 1 : -1);
         }
     }
 
@@ -155,8 +184,9 @@ public class Utils : MonoBehaviour
         }
     }
 
-    static public int[] arrayAggregasion(int[] a, int[] b, int multipler= 1) {
-        if(a.Length == 0)
+    static public int[] arrayAggregasion(int[] a, int[] b, int multipler = 1)
+    {
+        if (a.Length == 0)
         {
             return b;
         }
@@ -165,10 +195,10 @@ public class Utils : MonoBehaviour
             Debug.LogError("can't solve this!");
             return a;
         }
-        for(int i = 0; i < a.Length; i++)
+        for (int i = 0; i < a.Length; i++)
         {
-            a[i] += b[i]*multipler;
+            a[i] += b[i] * multipler;
         }
         return a;
-    } 
+    }
 }

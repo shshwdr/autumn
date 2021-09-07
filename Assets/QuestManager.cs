@@ -46,14 +46,18 @@ public class QuestManager : Singleton<QuestManager>
 
     public void addQuestItem(string name, int amount)
     {
-        if (!questAmountItemDict.ContainsKey(name))
+        if(name == "leave")
         {
-            questAmountItemDict[name] = 0;
-        }
-        questAmountItemDict[name] += amount;
 
-        updateQuestState();
-        questController.UpdateQuest();
+            if (!questAmountItemDict.ContainsKey(name))
+            {
+                questAmountItemDict[name] = 0;
+            }
+            questAmountItemDict[name] += amount;
+
+            updateQuestState();
+            questController.UpdateQuest();
+        }
     }
     public List<QuestInfo> activeQuests()
     {

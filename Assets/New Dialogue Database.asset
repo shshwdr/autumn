@@ -96,7 +96,7 @@ MonoBehaviour:
       type: 0
       typeString: CustomFieldType_Text
     - title: favoriteItem
-      value: test
+      value: carrot
       type: 0
       typeString: CustomFieldType_Text
     portrait: {fileID: 0}

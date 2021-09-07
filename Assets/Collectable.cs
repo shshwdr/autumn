@@ -7,16 +7,20 @@ using UnityEngine.UI;
 
 public class Collectable : InteractiveItem
 {
-    public float pickingUpTime = 0.5f;
+    public float pickingUpTime;
+    public string itemName = "leave";
     public override void Start()
     {
         base.Start();
-        interactiveText.text = "Clean Leaves";
+        interactiveText.text = Inventory.Instance.itemDict[itemName].pickup;
+        pickingUpTime = Inventory.Instance.itemDict[itemName].pickupTime;
     }
+
+    
     void showPickingUpBar(GameObject pickingUpBar)
     {
         pickingUpBar.SetActive(true);
-        Image pickingUpImage = pickingUpBar.GetComponentInChildren<Image>();
+        Image pickingUpImage = pickingUpBar.GetComponentsInChildren <Image>()[1];
         pickingUpImage.fillAmount = 0;
         DOTween.To(() => pickingUpImage.fillAmount, x => pickingUpImage.fillAmount = x, 1, pickingUpTime);
 
@@ -34,8 +38,8 @@ public class Collectable : InteractiveItem
     {
 
         yield return new WaitForSeconds(pickingUpTime);
-        Inventory.Instance.addItem("leave", 1);
-        QuestManager.Instance.addQuestItem("leave", 1);
+        Inventory.Instance.addItem(itemName, 1);
+        QuestManager.Instance.addQuestItem(itemName, 1);
         //DialogueLua.SetVariable("cleanedLeaves", DialogueLua.GetVariable("cleanedLeaves").asInt + 1);
         player.finishPickupItem();
         player.pickingUpBar.SetActive(false);

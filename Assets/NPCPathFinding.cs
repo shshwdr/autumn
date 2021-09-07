@@ -12,6 +12,7 @@ public class NPCPathFinding: CharacterMove
     Vector3 target;
     public float moveSpeed = 3;
     public float nextWaypointDistance = 0.3f;
+
     protected override void Awake()
     {
         base.Awake();
@@ -66,7 +67,7 @@ public class NPCPathFinding: CharacterMove
     {
         if (path == null)
         {
-
+            npc.animator.SetFloat("speed", 0);
             //renderer.setDirection(Vector2.zero);
             return;
         }
@@ -81,6 +82,7 @@ public class NPCPathFinding: CharacterMove
             path = null;
             reachedEndOfPath = true;
             npc.finishPath();
+            npc.animator.SetFloat("speed", 0);
             return;
         }
         else
@@ -89,6 +91,8 @@ public class NPCPathFinding: CharacterMove
         }
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         rb.MovePosition(rb.position + direction * Time.deltaTime * moveSpeed);
+
+        npc.animator.SetFloat("speed", 1);
         testFlip(direction);
         //renderer.setDirection(direction);
 

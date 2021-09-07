@@ -10,6 +10,8 @@ public class ItemInfo
 {
     public string name;
     public string displayName;
+    public string pickup;
+    public float pickupTime;
     public string description;
     public int amount;
 }
@@ -105,8 +107,18 @@ public class Inventory : Singleton<Inventory>
         //}
         EventPool.Trigger("updateInventory");
     }
+
+    public bool hasRake()
+    {
+
+        return hasItem("rake");
+    }
+    public bool hasItem(string itemName)
+    {
+        return itemDict.ContainsKey(itemName) && itemDict[itemName].amount>0;
+    }
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         string text = Resources.Load<TextAsset>("json/Item").text;
         var allNPCs = JsonMapper.ToObject<AllItemInfo>(text);
