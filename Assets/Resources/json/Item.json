@@ -21,6 +21,13 @@
         "description":"Not my favorite vegetable.",
         "pickup":"Harvest Carrot",
         "pickupTime":2
+      },
+      {
+        "name": "fish",
+        "displayName":"Blue Gill",
+        "description":"Looks tasty.",
+        "pickup":"Pickup Blue Gill",
+        "pickupTime":1
       }
     ]
   }

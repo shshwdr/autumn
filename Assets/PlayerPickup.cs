@@ -77,14 +77,26 @@ public class PlayerPickup : MonoBehaviour
         }
     }
 
+    public void startFishing()
+    {
 
+        isPickingUp = true;
+        animator.SetBool("finding", true);
+    }
+
+    public void finishFishing()
+    {
+
+        isPickingUp = false;
+        animator.SetBool("finding", false);
+    }
 
     public void startPickupItem()
     {
         isPickingUp = true;
+        animator.SetBool("hasRake", Inventory.Instance.hasRake());
         animator.SetBool("finding", true);
 
-        animator.SetBool("hasRake", Inventory.Instance.hasRake());
         // yield return  lastClosest.startPicking(pickingUpBar);
     }
 
