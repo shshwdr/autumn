@@ -168,15 +168,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 44.75
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -305,6 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef67ca423c6d7b4181a36def470f58c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  title: {fileID: 3266622149373575561}
 --- !u!114 &1526374485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,7 +391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1202319559316140757, guid: cb7644821db92424aabf8325d5757595, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1202319559316140757, guid: cb7644821db92424aabf8325d5757595, type: 3}
       propertyPath: m_LocalPosition.x
@@ -492,7 +493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1202319559316140757, guid: cb7644821db92424aabf8325d5757595, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1202319559316140757, guid: cb7644821db92424aabf8325d5757595, type: 3}
       propertyPath: m_LocalPosition.x
@@ -594,7 +595,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1202319559316140757, guid: cb7644821db92424aabf8325d5757595, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1202319559316140757, guid: cb7644821db92424aabf8325d5757595, type: 3}
       propertyPath: m_LocalPosition.x
@@ -696,7 +697,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1202319559316140757, guid: cb7644821db92424aabf8325d5757595, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1202319559316140757, guid: cb7644821db92424aabf8325d5757595, type: 3}
       propertyPath: m_LocalPosition.x

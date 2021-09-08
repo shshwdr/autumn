@@ -141,5 +141,7 @@ public class UpgradeHouse : InteractiveItem
         player.pickingUpBar.SetActive(false);
         upgradeConsume();
         currentIndex++;
+        QuestManager.Instance.addQuestItem("houseUpgradeLevel", 1);
+        //DialogueLua.SetVariable("houseUpgradeLevel", currentIndex);
     }
 }

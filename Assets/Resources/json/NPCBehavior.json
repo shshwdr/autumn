@@ -4,7 +4,7 @@
       {
         "name": "leader",
         "displayName":"Barak",
-        "initPosition":"leaderStart",
+        "initPosition":"startLeader",
         "behaviors":[
           
           {

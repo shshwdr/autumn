@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using PixelCrushers.DialogueSystem;
 
 public class QuestCell : MonoBehaviour
 {
@@ -33,6 +34,12 @@ public class QuestCell : MonoBehaviour
             {
                 case "questItemAmount":
                     entries[i].GetComponentInChildren<TMP_Text>().text = string.Format( entry.text,QuestManager.Instance.getQuestItemAmount(entry.subtype), entry.amount);
+                    break;
+                case "variableAmount":
+                    
+                    int currentAmount = DialogueLua.GetVariable("meetVillagers").asInt;
+                    entries[i].GetComponentInChildren<TMP_Text>().text = string.Format(entry.text, currentAmount, entry.amount);
+
                     break;
             }
             if(entry.state == QuestState.success)

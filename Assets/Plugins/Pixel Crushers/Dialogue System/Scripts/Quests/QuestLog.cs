@@ -331,6 +331,10 @@ namespace PixelCrushers.DialogueSystem
         /// <param name="state">New state.</param>
         public static void SetQuestState(string questName, string state)
         {
+            string[] tempStorage = new string[2];
+            tempStorage[0] = state;
+            tempStorage[1] = questName;
+            GameObject.Find("managers").SendMessage("changeQuestState", tempStorage);
             if (SetQuestStateOverride != null)
             {
                 SetQuestStateOverride(questName, state);

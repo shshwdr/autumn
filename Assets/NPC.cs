@@ -24,7 +24,7 @@ public class NPC : CharacterMove
         // Start is called before the first frame update
         void Start()
     {
-        spriteObject.SetActive(false);
+       // spriteObject.SetActive(false);
         info = NPCManager.Instance.npcDict[name];
         transform.position =  ScenePositionManager.Instance.positionDict[info.initPosition].position;
         EventPool.OptIn("hourChange", HourChanged);

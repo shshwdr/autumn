@@ -68,9 +68,25 @@
         "entries":[
           {
             "amount":2,
-            "type":"talkToNPCAmount",
-            "subtype":"leave",
+            "type":"variableAmount",
+            "subtype":"meetVillagers",
             "text":"Meet {0} / {1} villagers."
+          }
+        ]
+      },
+      
+      {
+        "name": "upgradeHouse",
+        "displayName":"Build a house to live",
+        "returnNPC":"leader",
+        "reward":[
+        ],
+        "entries":[
+          {
+            "amount":5,
+            "type":"questItemAmount",
+            "subtype":"houseUpgradeLevel",
+            "text":"Upgrade House {0} / {1}."
           }
         ]
       }

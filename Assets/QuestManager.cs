@@ -44,11 +44,10 @@ public class QuestManager : Singleton<QuestManager>
     public Dictionary<string, QuestInfo> questDict;
     public Dictionary<string, int> questAmountItemDict = new Dictionary<string, int>();
 
-    public void addQuestItem(string name, int amount)
+    public void addQuestItem(string name, int amount = 1)
     {
-        if(name == "leave")
+        //if(name == "leave")
         {
-
             if (!questAmountItemDict.ContainsKey(name))
             {
                 questAmountItemDict[name] = 0;
@@ -163,6 +162,15 @@ public class QuestManager : Singleton<QuestManager>
         questController.UpdateQuest();
     }
 
+    public void changeQuestState(string[] args)
+    {
+        switch(args[0])
+        {
+            case "active":
+            activateQuest(args[1]);
+                break;
+        }
+    }
     public void activateQuest(string name)
     {
 
