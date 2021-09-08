@@ -7,6 +7,12 @@
         "description":"Leave of maple",
         "pickup":"Clean Leaves",
         "pickupTime":1
+      },{
+        "name": "stick",
+        "displayName":"Stick",
+        "description":"Stick of maple",
+        "pickup":"Clean Sticks",
+        "pickupTime":1
       },
       {
         "name": "rake",

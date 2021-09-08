@@ -24,6 +24,11 @@ public class PlayerPickup : MonoBehaviour
         EventPool.OptIn("updateInventory",updateRake);
     }
 
+    public void failedPickup()
+    {
+        animator.SetTrigger("wrong");
+    }
+
     void updateRake()
     {
         if (Inventory.Instance.hasRake())

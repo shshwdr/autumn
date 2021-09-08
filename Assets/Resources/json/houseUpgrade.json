@@ -1,21 +1,27 @@
 {
-    "allUpgrades":
+    "allUpgrade":
     [
       {
         "name": "empty",
         "displayName":"An empty place",
-        "description":"Nothing here. Require {0} {1} to upgrade.",
-        "item":"leave",
-        "amount":2,
+        "description":"Nothing here. Require {0}to upgrade.",
+        "items":[{"Key":"leave","Value":3}],
         "buildTime":2
       },
       {
         "name": "leave",
         "displayName":"A den with leaves",
-        "description":"I can sleep here but it is fairly code. Require {0} {1} to upgrade.",
-        "item":"stick",
-        "amount":4,
+        "description":"I can sleep here but it is fairly cold. Require {0}to upgrade.",
+        "items":[{"Key":"leave","Value":3},{"Key":"stick","Value":3}],
         "buildTime":2
+      },
+      {
+        "name": "stick",
+        "displayName":"a kennel with sticks",
+        "description":"At least it has a roof now, time to build a real house. Require {0}to upgrade.",
+        "items":[{"leave":3},{"stick":3},{"wood":3}],
+        "buildTime":2,
+        "isMax":true
       }
     ]
   }

@@ -113,9 +113,14 @@ public class Inventory : Singleton<Inventory>
 
         return hasItem("rake");
     }
+
+    public bool hasItemAmount(string itemName,int amount)
+    {
+        return itemDict.ContainsKey(itemName) && itemDict[itemName].amount >= amount;
+    }
     public bool hasItem(string itemName)
     {
-        return itemDict.ContainsKey(itemName) && itemDict[itemName].amount>0;
+        return hasItemAmount(itemName, 1);
     }
     // Start is called before the first frame update
     void Awake()

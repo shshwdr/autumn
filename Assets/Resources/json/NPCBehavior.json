@@ -57,6 +57,139 @@
             "startDialogue":"fromPlay"
           }
         ]
+      },
+      {
+        "name": "kiwi",
+        "displayName":"Moncha",
+        "initPosition":"kiwiHome",
+        "behaviors":[
+          {
+            "time":20,
+            "destination":"pond",
+            "startDialogue":"toPlay",
+            "finishDialogue":"toPlay"
+          },
+          {
+            "time":4,
+            "destination":"kiwiHome",
+            "shouldHide":true,
+            "startDialogue":"fromPlay"
+          }
+        ]
+      },
+      {
+        "name": "bird",
+        "displayName":"Everest",
+        "initPosition":"birdHome",
+        "behaviors":[
+          {
+            "time":8,
+            "destination":"forestEntrance",
+            "startDialogue":"toPlay",
+            "finishDialogue":"toPlay"
+          },
+          {
+            "time":15,
+            "destination":"birdHome",
+            "shouldHide":true,
+            "startDialogue":"fromPlay"
+          }
+        ]
+      },
+      {
+        "name": "leg",
+        "displayName":"Nova",
+        "initPosition":"backery",
+        "behaviors":[
+          {
+            "time":12,
+            "destination":"secretPlace",
+            "startDialogue":"toPlay",
+            "finishDialogue":"toPlay"
+          },
+          {
+            "time":19,
+            "destination":"backery",
+            "shouldHide":true,
+            "startDialogue":"fromPlay"
+          }
+        ]
+      },
+      {
+        "name": "backery",
+        "displayName":"Suki",
+        "initPosition":"backery",
+        "behaviors":[
+          {
+            "time":14,
+            "destination":"secretPlaceOut",
+            "startDialogue":"toPlay",
+            "finishDialogue":"toPlay"
+          },
+          {
+            "time":18,
+            "destination":"backery",
+            "shouldHide":true,
+            "startDialogue":"fromPlay"
+          }
+        ]
+      },
+      {
+        "name": "farmer",
+        "displayName":"Rune",
+        "initPosition":"farmerHome",
+        "behaviors":[
+          {
+            "time":5,
+            "destination":"farmerHomeOut",
+            "startDialogue":"toPlay",
+            "finishDialogue":"toPlay"
+          },
+          {
+            "time":14,
+            "destination":"farmerHome",
+            "shouldHide":true,
+            "startDialogue":"fromPlay"
+          }
+        ]
+      },
+      {
+        "name": "bear",
+        "displayName":"Ainsley",
+        "initPosition":"forestDeep",
+        "behaviors":[
+          {
+            "time":12,
+            "destination":"forestDeepOut",
+            "startDialogue":"toPlay",
+            "finishDialogue":"toPlay"
+          },
+          {
+            "time":15,
+            "destination":"forestDeep",
+            "shouldHide":true,
+            "startDialogue":"fromPlay"
+          }
+        ]
+      },
+      {
+        "name": "salamander",
+        "displayName":"Elam",
+        "initPosition":"salamanderHome",
+        "behaviors":[
+          {
+            "time":5,
+            "destination":"salamanderHomeOut",
+            "startDialogue":"toPlay",
+            "finishDialogue":"toPlay"
+          },
+          {
+            "time":14,
+            "destination":"salamanderHome",
+            "shouldHide":true,
+            "startDialogue":"fromPlay"
+          }
+        ]
       }
     ]
   }

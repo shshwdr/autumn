@@ -39,6 +39,11 @@ public class QuestCell : MonoBehaviour
             {
                 entries[i].GetComponentInChildren<TMP_Text>().color = Color.green;
             }
+            else
+            {
+                entries[i].GetComponentInChildren<TMP_Text>().color = Color.white;
+
+            }
             i++;
         }
         if(info.state == QuestState.returnToNPC)
