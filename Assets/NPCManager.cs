@@ -13,7 +13,8 @@ public class NPCBehavior {
     public int[] ignoreWeekdays;
     public int time;
     public string destination;
-    public string dialogue;
+    public string startDialogue;
+    public string finishDialogue;
     public bool shouldHide;
 }
 

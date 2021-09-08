@@ -70,9 +70,9 @@ public class NPC : CharacterMove
         talkable.enableInteractive();
         spriteObject.SetActive(true);
 
-        if (currentBehavior.dialogue != null)
+        if (currentBehavior.startDialogue != null)
         {
-            DialogueLua.SetActorField(name, "dialog", currentBehavior.dialogue);
+            DialogueLua.SetActorField(name, "dialog", currentBehavior.startDialogue);
         }
         else
         {
@@ -104,6 +104,16 @@ public class NPC : CharacterMove
             talkable.disableInteractive();
 
         }
+        if (currentBehavior.finishDialogue != null)
+        {
+            DialogueLua.SetActorField(name, "dialog", currentBehavior.finishDialogue);
+        }
+        else
+        {
+
+            DialogueLua.SetActorField(name, "dialog", "");
+        }
+
         currentBehavior = null;
     }
     // Update is called once per frame

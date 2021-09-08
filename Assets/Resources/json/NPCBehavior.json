@@ -3,52 +3,58 @@
     [
       {
         "name": "leader",
-        "displayName":"Village Leader",
-        "initPosition":"leaderHome",
+        "displayName":"Barak",
+        "initPosition":"leaderStart",
         "behaviors":[
           
           {
-            "days":[2],
-            "time":8,
-            "destination":"pumpkinCurveDay",
-            "dialogue":"pumpkinCurveDay"
-          },
-          {
-            "days":[2],
-            "time":15,
-            "destination":"pumpkinCurveDay",
-            "dialogue":"pumpkinCurveDay",
-            "shouldHide":true
-          },
-          {
-            "ignoreDays":[2],
             "weekdays":[1],
             "time":7,
             "destination":"leaderHomeOut2",
+            "startDialogue":"toVacation",
             "dialogue":"vacation"
           },
           {
-            "ignoreDays":[2],
             "weekdays":[1],
             "time":17,
             "destination":"leaderHome",
-            "dialogue":"vacation",
+            "startDialogue":"toVacation",
+            "finishDialogue":"toVacation",
             "shouldHide":true
           },
 
           {
-            "ignoreDays":[2],
             "ignoreWeekdays":[1],
             "time":8,
-            "destination":"leaderHomeOut",
-            "dialogue":""
+            "destination":"leaderOffice",
+            "startDialogue":"toWork",
+            "finishDialogue":"startWork"
           },
           {
-            "ignoreDays":[2],
             "ignoreWeekdays":[1],
             "time":15,
             "destination":"leaderHome",
-            "shouldHide":true
+            "shouldHide":true,
+            "startDialogue":"fromWork"
+          }
+        ]
+      },
+      {
+        "name": "tuuli",
+        "displayName":"Tuuli",
+        "initPosition":"leaderHome",
+        "behaviors":[
+          {
+            "time":8,
+            "destination":"tuuliPlayground",
+            "startDialogue":"toPlay",
+            "finishDialogue":"toPlay"
+          },
+          {
+            "time":17,
+            "destination":"leaderHome",
+            "shouldHide":true,
+            "startDialogue":"fromPlay"
           }
         ]
       }

@@ -52,6 +52,27 @@
             "text":"Clean {0} / {1} leaves."
           }
         ]
+      },
+      
+      {
+        "name": "meetEveryone",
+        "displayName":"Meet Everyone",
+        "returnNPC":"leader",
+        "reward":[
+          {
+            "type":"special",
+            "subtype":"inventoryCell",
+            "amount":1
+          }
+        ],
+        "entries":[
+          {
+            "amount":2,
+            "type":"talkToNPCAmount",
+            "subtype":"leave",
+            "text":"Meet {0} / {1} villagers."
+          }
+        ]
       }
     ]
   }

@@ -1,0 +1,21 @@
+{
+    "allUpgrades":
+    [
+      {
+        "name": "empty",
+        "displayName":"An empty place",
+        "description":"Nothing here. Require {0} {1} to upgrade.",
+        "item":"leave",
+        "amount":2,
+        "buildTime":2
+      },
+      {
+        "name": "leave",
+        "displayName":"A den with leaves",
+        "description":"I can sleep here but it is fairly code. Require {0} {1} to upgrade.",
+        "item":"stick",
+        "amount":4,
+        "buildTime":2
+      }
+    ]
+  }
