@@ -23,7 +23,7 @@
             "amount":2,
             "type":"questItemAmount",
             "subtype":"leave",
-            "text":"Clean {0} / {1} leaves."
+            "text":"Clean {0} / {1} leaves"
           }
         ]
       },
@@ -49,7 +49,7 @@
             "amount":4,
             "type":"questItemAmount",
             "subtype":"leave",
-            "text":"Clean {0} / {1} leaves."
+            "text":"Clean {0} / {1} leaves"
           }
         ]
       },
@@ -58,19 +58,20 @@
         "name": "meetEveryone",
         "displayName":"Meet Everyone",
         "returnNPC":"leader",
+        "grantRequest":[],
         "reward":[
           {
-            "type":"special",
+            "type":"inventoryCell",
             "subtype":"inventoryCell",
             "amount":1
           }
         ],
         "entries":[
           {
-            "amount":2,
+            "amount":7,
             "type":"variableAmount",
             "subtype":"meetVillagers",
-            "text":"Meet {0} / {1} villagers."
+            "text":"Meet {0} / {1} villagers"
           }
         ]
       },
@@ -86,7 +87,133 @@
             "amount":5,
             "type":"questItemAmount",
             "subtype":"houseUpgradeLevel",
-            "text":"Upgrade House {0} / {1}."
+            "text":"Upgrade House {0} / {1}"
+          }
+        ]
+      },
+      
+      {
+        "name": "kite",
+        "displayName":"Get kite from the tree",
+        "returnNPC":"tuuli",
+        "grantRequest":[
+          {
+            "type":"finishQuest",
+            "subtype":"meetEveryone"
+          }
+        ],
+        "grantBehavior":[
+          {
+            "type":"showItem",
+            "subtype":"quest_kite"
+          }
+        ],
+        "reward":[
+        ],
+        "entries":[
+          {
+            "amount":5,
+            "type":"inventoryAmount",
+            "subtype":"kite",
+            "text":"Get kite from the tree"
+          }
+        ]
+      },
+      
+      {
+        "name": "forestSound",
+        "displayName":"Investigate forest sound",
+        "returnNPC":"hikeguy",
+        "grantRequest":[
+          {
+            "type":"friendship",
+            "subtype":"hikeguy",
+            "amount":20
+          }
+        ],
+        "activeBehavior":[
+          {
+            "type":"showNPC",
+            "subtype":"bear"
+          }
+        ],
+        "reward":[
+        ],
+        "entries":[
+          {
+            "type":"metNPC",
+            "subtype":"bear",
+            "text":"Investigate forest around noon"
+          }
+        ]
+      },
+      {
+        "name": "treeSound",
+        "displayName":"Investigate what's over the falling tree",
+        "returnNPC":"leader",
+        "grantRequest":[
+          {
+            "type":"finishQuest",
+            "subtype":"kite"
+          }
+        ],
+        "reward":[
+        ],
+        "entries":[
+          {
+            "type":"inventoryAmount",
+            "subtype":"chainsaw",
+            "text":"Get Chainsaw from Suki"
+          },
+          {
+            "type":"metNPC",
+            "subtype":"salamander",
+            "text":"Cut the log and explore"
+          }
+        ]
+      },
+      
+      {
+        "name": "whoStolePumpkin",
+        "displayName":"Find out who stole the PumpkinG",
+        "returnNPC":"farmer",
+        "activeBehavior":[
+          {
+            "type":"showItem",
+            "subtype":"suspicousFootprint1"
+          },
+          {
+            "type":"showItem",
+            "subtype":"suspicousFootprint2"
+          },
+          {
+            "type":"showItem",
+            "subtype":"suspicousFootprint3"
+          }
+        ],
+        "reward":[
+          {
+          "type":"item",
+          "subtype":"saw",
+          "amount":1
+        },{
+          "type":"friendship",
+          "subtype":"farmer",
+          "amount":10
+        }
+        ],
+        "entries":[
+          {
+            "type":"variableAmount",
+            "subtype":"foundFootprint",
+            "amount":3,
+            "text":"Collect footprint {0} / {1}"
+          },
+          {
+            "type":"variableAmount",
+            "subtype":"talkedToSukiAboutPumpking",
+            "text":"Talk to suspect",
+            "unlockByLast":true
           }
         ]
       }

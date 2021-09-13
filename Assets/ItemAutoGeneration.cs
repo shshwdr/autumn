@@ -5,18 +5,17 @@ using UnityEngine;
 
 public class ItemAutoGeneration : MonoBehaviour
 {
-    public Transform leavesParentTransform;
-    public Transform applesParentTransform;
-    public int leavesGenerateAmountEachDay = 5;
-    public int applesGenerateAmountEachDay = 2;
     // Start is called before the first frame update
     void Start()
     {
         EventPool.OptIn("dayChange", generateItems);
     }
 
-    void generateItem(Transform parent, int count,string prefabName)
+    void generateItem(Transform parent)
     {
+        var fullName = parent.name.Split('_');
+        var prefabName = fullName[0];
+        var count = int.Parse( fullName[1]);
         GameObject prefab = Resources.Load<GameObject>("item/" + prefabName);
         var selectedIndex = Utils.randomMultipleIndex(parent.childCount, count);
         foreach(var selected in selectedIndex)
@@ -31,8 +30,10 @@ public class ItemAutoGeneration : MonoBehaviour
     }
     void generateItems()
     {
-        generateItem(leavesParentTransform, leavesGenerateAmountEachDay, "leave");
-        generateItem(applesParentTransform, applesGenerateAmountEachDay, "carrot");
+        foreach(Transform t in transform)
+        {
+            generateItem(t);
+        }
     }
     // Update is called once per frame
     void Update()

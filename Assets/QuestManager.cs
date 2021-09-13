@@ -6,7 +6,7 @@ using UnityEngine;
 
 
 
-public class QuestReward
+public class GeneralTypeAmount
 {
 
     public int amount;
@@ -20,6 +20,7 @@ public class QuestEntry
     public string subtype;
     public string text;
     public QuestState state;
+    public bool unlockByLast;
 }
 
 public class QuestInfo
@@ -29,20 +30,30 @@ public class QuestInfo
     public string returnNPC;
     public string activateNext;
     public QuestState state;
-    public QuestReward[] reward;
+    public GeneralTypeAmount[] reward;
+    public GeneralTypeAmount[] grantBehavior;
+    public GeneralTypeAmount[] grantRequest;
     public QuestEntry[] entries;
 }
 public class AllQuestInfo
 {
     public List<QuestInfo> allQuest;
 }
-public enum QuestState { unassigned, active, returnToNPC,success}
+public enum QuestState { unassigned, active, returnToNPC,success,grantable}
 public class QuestManager : Singleton<QuestManager>
 {
-
+    public Dictionary<string, GameObject> itemsDict = new Dictionary<string, GameObject>();
     public QuestController questController;
     public Dictionary<string, QuestInfo> questDict;
     public Dictionary<string, int> questAmountItemDict = new Dictionary<string, int>();
+
+    public void updateQuestFromNoWhere()
+    {
+
+        updateQuestState();
+        updateGrantQuest();
+        questController.UpdateQuest();
+    }
 
     public void addQuestItem(string name, int amount = 1)
     {
@@ -70,6 +81,19 @@ public class QuestManager : Singleton<QuestManager>
         }
         return res;
     }
+
+    public List<QuestInfo> unsignedQuests()
+    {
+        var res = new List<QuestInfo>();
+        foreach (var info in QuestManager.Instance.questDict.Values)
+        {
+            if (info.state == QuestState.unassigned)
+            {
+                res.Add(info);
+            }
+        }
+        return res;
+    }
     void updateQuestState()
     {
         foreach(var info in activeQuests())
@@ -85,6 +109,25 @@ public class QuestManager : Singleton<QuestManager>
                             entry.state = QuestState.success;
                         }
                         break;
+                    case "inventoryAmount":
+                        if (Inventory.Instance.hasItem(entry.subtype))
+                        {
+                            entry.state = QuestState.success;
+                        }
+                        break;
+                    case "variableAmount":
+                        if (DialogueLua.GetVariable(entry.subtype).asInt >= entry.amount)
+                        {
+
+                            entry.state = QuestState.success;
+                        }
+                        break;
+                    case "metNPC":
+                        if (DialogueLua.GetActorField(entry.subtype, "hasTalked").asBool)
+                        {
+                            entry.state = QuestState.success;
+                        }
+                        break;
                 }
                 if (entry.state != QuestState.success)
                 {
@@ -95,21 +138,49 @@ public class QuestManager : Singleton<QuestManager>
             {
                 info.state = QuestState.returnToNPC;
 
+                var returnNPC = questDict[info.name].returnNPC;
+                if (returnNPC != null)
+                {
+
+                    NPCManager.Instance.npcScriptDict[returnNPC].canFinishQuest();
+                }
                 DialogueLua.SetQuestField(info.name, "State", "returnToNPC");
             }
         }
     }
-    public void finishQuest(string name)
+
+    public void updateGrantQuest()
     {
-        var info = questDict[name];
-        info.state = QuestState.success;
+        foreach(var info in unsignedQuests())
+        {
+            if (info.grantRequest!=null)
+            {
+                bool allFinished = true;
+                foreach(var request in info.grantRequest)
+                {
+                    switch (request.type) {
+                        case "finishQuest":
+                            if(questDict[request.subtype].state != QuestState.success)
+                            {
+                                allFinished = false;
+                            }
+                            break;
+                        case "friendship":
+                            if (DialogueLua.GetActorField(request.subtype, "friendship").asInt < request.amount)
+                            {
+                                allFinished = false;
+                            }
+                            break;
+                    }
 
-        questController.UpdateQuest();
-        DialogueLua.SetQuestField(name, "State", "success");
+                }
 
-        getReward(info);
-        startNextQuest(info);
-
+                if (allFinished)
+                {
+                    grantQuest(info.name);
+                }
+            }
+        }
     }
     void startNextQuest(QuestInfo info)
     {
@@ -133,6 +204,10 @@ public class QuestManager : Singleton<QuestManager>
                 case "item":
                     Inventory.Instance.addItem(reward.subtype);
                     DialogueManager.ShowAlert("Get a " + reward.subtype+"!");//Inventory.Instance.item);
+                    break;
+                case "inventoryCell":
+                    Inventory.Instance.addInventoryUnlockedCell();
+                    DialogueManager.ShowAlert("Get an extra inventory bag !");//Inventory.Instance.item);
                     break;
             }
 
@@ -159,6 +234,7 @@ public class QuestManager : Singleton<QuestManager>
         {
             questDict[info.name] = info;
         }
+        //updateQuestFromNoWhere();
         questController.UpdateQuest();
     }
 
@@ -167,8 +243,25 @@ public class QuestManager : Singleton<QuestManager>
         switch(args[0])
         {
             case "active":
-            activateQuest(args[1]);
+                if (questDict[args[1]].state != QuestState.active)
+                {
+
+                    activateQuest(args[1]);
+                }
                 break;
+            case "success":
+                if (questDict[args[1]].state != QuestState.success)
+                {
+                    finishQuest(args[1]);
+                }
+                break;
+            case "grantable":
+                if (questDict[args[1]].state != QuestState.grantable)
+                {
+                    grantQuest(args[1]);
+                }
+                break;
+
         }
     }
     public void activateQuest(string name)
@@ -176,6 +269,76 @@ public class QuestManager : Singleton<QuestManager>
 
         questDict[name].state = QuestState.active;
         questController.UpdateQuest();
+        DialogueLua.SetQuestField(name, "State", "active");
+
+        var returnNPC = questDict[name].returnNPC;
+        if (returnNPC != null)
+        {
+            NPCManager.Instance.npcScriptDict[returnNPC].hideAllQuestMarkers();
+        }
+    }
+
+    public void doBehaviors(GeneralTypeAmount[] behaviors)
+    {
+        if (behaviors == null)
+        {
+            return;
+        }
+        foreach (var behavior in behaviors)
+        {
+            switch (behavior.type)
+            {
+                case "showItem":
+                    if (!itemsDict.ContainsKey(behavior.subtype))
+                    {
+                        Debug.LogError(behavior.subtype + " does not existed in itemsDict");
+                    }
+                    itemsDict[behavior.subtype].SetActive(true);
+                    //GameObject.Find(behavior.subtype).SetActive(true);
+                    break;
+                case "showNPC":
+                    if (!NPCManager.Instance.npcScriptDict.ContainsKey(behavior.subtype))
+                    {
+                        Debug.LogError(behavior.subtype + " does not existed in npc manager");
+                    }
+                    NPCManager.Instance.npcScriptDict[behavior.subtype].activate();
+
+                    break;
+            }
+
+        }
+    }
+
+    public void grantQuest(string name)
+    {
+        doBehaviors(questDict[name].grantBehavior);
+        questDict[name].state = QuestState.grantable;
+        DialogueLua.SetQuestField(name, "State", "grantable");
+
+        var returnNPC = questDict[name].returnNPC;
+        if (returnNPC!=null)
+        {
+
+            NPCManager.Instance.npcScriptDict[returnNPC].willGrantQuest();
+        }
+    }
+    public void finishQuest(string name)
+    {
+        var info = questDict[name];
+        info.state = QuestState.success;
+
+        questController.UpdateQuest();
+        DialogueLua.SetQuestField(name, "State", "success");
+
+        getReward(info);
+        startNextQuest(info);
+
+        var returnNPC = questDict[name].returnNPC;
+        if (returnNPC != null)
+        {
+
+            NPCManager.Instance.npcScriptDict[returnNPC].hideAllQuestMarkers();
+        }
     }
 
     public void updateQuestController()

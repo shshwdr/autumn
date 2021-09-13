@@ -32,6 +32,8 @@ public class UpgradeHouse : InteractiveItem
     PlayerPickup player;
     float upgradeTime = 3f;
     int currentIndex;
+
+    public Sprite[] updateHouseSprites;
     public override void prepareUI()
     {
         base.prepareUI();
@@ -70,6 +72,7 @@ public class UpgradeHouse : InteractiveItem
         string text = Resources.Load<TextAsset>("json/houseUpgrade").text;
         var allNPCs = JsonMapper.ToObject<AllUpgradeInfo>(text);
         updateList = allNPCs.allUpgrade;
+        renderer = GetComponentInChildren<SpriteRenderer>();
     }
     // Start is called before the first frame update
     public override void Start()
@@ -116,7 +119,7 @@ public class UpgradeHouse : InteractiveItem
         {
 
             base.interact(player);
-            player.startFishing();
+            player.startPickupItem();
             isUpgrading = true;
             StartCoroutine(upgrade(player));
             //fishWaitTime = Random.Range(fishWaitingTimeMin, fishWaitingTimeMax);
@@ -137,11 +140,12 @@ public class UpgradeHouse : InteractiveItem
         //Inventory.Instance.addItem(itemName, 1);
         //QuestManager.Instance.addQuestItem(itemName, 1);
         //DialogueLua.SetVariable("cleanedLeaves", DialogueLua.GetVariable("cleanedLeaves").asInt + 1);
-        player.finishFishing();
+        player.finishPickupItem();
         player.pickingUpBar.SetActive(false);
         upgradeConsume();
         currentIndex++;
         QuestManager.Instance.addQuestItem("houseUpgradeLevel", 1);
+        renderer.sprite = updateHouseSprites[currentIndex];
         //DialogueLua.SetVariable("houseUpgradeLevel", currentIndex);
     }
 }

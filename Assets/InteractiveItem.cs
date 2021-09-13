@@ -11,6 +11,7 @@ public class InteractiveItem:MonoBehaviour
     public TMP_Text interactiveText;
     public bool isInteractiveDisabled;
     PlayerPickup playerPickup;
+    protected SpriteRenderer renderer;
     //public GameObject pickingUpBar;
     // Start is called before the first frame update
     public virtual void Start()
@@ -25,6 +26,10 @@ public class InteractiveItem:MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!canInteract())
+        {
+            return;
+        }
         if (isInteractiveDisabled)
         {
             return;
@@ -39,7 +44,10 @@ public class InteractiveItem:MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-
+        if (!canInteract())
+        {
+            return;
+        }
         var player = collision.GetComponent<PlayerPickup>();
         if (player)
         {
@@ -47,9 +55,18 @@ public class InteractiveItem:MonoBehaviour
         }
     }
 
+    protected virtual bool canInteract()
+    {
+        return true;
+    }
 
     public virtual void interact(PlayerPickup player)
     {
+
+        if (!canInteract())
+        {
+            return;
+        }
         if (isInteractiveDisabled)
         {
             return;
@@ -62,6 +79,10 @@ public class InteractiveItem:MonoBehaviour
     public void showPickupUI()
     {
 
+        if (!canInteract())
+        {
+            return;
+        }
         if (isInteractiveDisabled)
         {
             return;

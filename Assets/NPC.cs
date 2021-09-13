@@ -9,22 +9,64 @@ public class NPC : CharacterMove
 {
     [HideInInspector]
     public NPCInfo info;
-    public string name;
-    bool isActive;
+    //public string name;
     Talkable talkable;
     NPCBehavior currentBehavior;
     NPCPathFinding pathFinding;
+
+    public GameObject willGrantQuestMarker;
+    public GameObject canFinishQuestMarker;
+
+    public GameObject renderObjects;
+
+    public bool isActived;
+
+    public bool isVisible = true;
+
+    public void activate()
+    {
+        isActived = true;
+    }
+
+    public void hideAllQuestMarkers()
+    {
+        willGrantQuestMarker.SetActive(false);
+        canFinishQuestMarker.SetActive(false);
+    }
+    public void willGrantQuest()
+    {
+        hideAllQuestMarkers();
+        willGrantQuestMarker.SetActive(true);
+
+    }
+    public void canFinishQuest()
+    {
+        hideAllQuestMarkers();
+        canFinishQuestMarker.SetActive(true);
+
+    }
 
     protected override void Awake()
     {
         base.Awake();
         talkable = GetComponent<Talkable>();
         pathFinding = GetComponent<NPCPathFinding>();
+        hideAllQuestMarkers();
+        info = NPCManager.Instance.npcDict[name];
+        NPCManager.Instance.npcScriptDict[info.name] = this;
+        isActived = info.isActived;
+
     }
         // Start is called before the first frame update
         void Start()
     {
-       // spriteObject.SetActive(false);
+        if (name != "leader")
+        {
+
+            renderObjects.SetActive(false);
+
+            isVisible = false;
+        }
         info = NPCManager.Instance.npcDict[name];
         transform.position =  ScenePositionManager.Instance.positionDict[info.initPosition].position;
         EventPool.OptIn("hourChange", HourChanged);
@@ -34,6 +76,10 @@ public class NPC : CharacterMove
 
     void HourChanged()
     {
+        if (!isActived)
+        {
+            return;
+        }
         DayTime time = DayTimeManager.Instance.gameTime;
         foreach (NPCBehavior behavior in info.behaviors)
         {
@@ -62,14 +108,15 @@ public class NPC : CharacterMove
 
     IEnumerator moveTo(NPCBehavior behavior)
     {
+        yield return new WaitForSeconds(behavior.delay);
         pathFinding.setTarget(ScenePositionManager.Instance.positionDict[behavior.destination]);
         //move to destination
-        isActive = true;
         currentBehavior = behavior;
 
         talkable.enableInteractive();
-        spriteObject.SetActive(true);
+        renderObjects.SetActive(true);
 
+        isVisible = true;
         if (currentBehavior.startDialogue != null)
         {
             DialogueLua.SetActorField(name, "dialog", currentBehavior.startDialogue);
@@ -100,8 +147,9 @@ public class NPC : CharacterMove
         }
         if (currentBehavior.shouldHide)
         {
-            spriteObject.SetActive(false);
-            talkable.disableInteractive();
+            renderObjects.SetActive(false);
+            isVisible = false;
+            //talkable.disableInteractive();
 
         }
         if (currentBehavior.finishDialogue != null)

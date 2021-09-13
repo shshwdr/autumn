@@ -20,7 +20,10 @@ public class Talkable : InteractiveItem
         interactiveText.text = "Talk to " + npc.info.displayName;
     }
 
-    
+    protected override bool canInteract()
+    {
+        return npc.isVisible;
+    }
 
     // Update is called once per frame
     void Update()

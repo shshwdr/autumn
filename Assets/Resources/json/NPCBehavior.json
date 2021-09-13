@@ -5,33 +5,35 @@
         "name": "leader",
         "displayName":"Barak",
         "initPosition":"startLeader",
+        "isActived":true,
         "behaviors":[
           
           {
-            "weekdays":[1],
+            "weekdays":[4],
             "time":7,
-            "destination":"leaderHomeOut2",
-            "startDialogue":"toVacation",
-            "dialogue":"vacation"
+            "destination":"outVillage",
+            "startDialogue":"weekend",
+            "dialogue":"vacation",
+            "shouldHide":true
           },
           {
-            "weekdays":[1],
+            "weekdays":[4],
             "time":17,
             "destination":"leaderHome",
-            "startDialogue":"toVacation",
-            "finishDialogue":"toVacation",
+            "startDialogue":"weekend",
+            "finishDialogue":"weekend",
             "shouldHide":true
           },
 
           {
-            "ignoreWeekdays":[1],
+            "ignoreWeekdays":[4],
             "time":8,
             "destination":"leaderOffice",
             "startDialogue":"toWork",
             "finishDialogue":"startWork"
           },
           {
-            "ignoreWeekdays":[1],
+            "ignoreWeekdays":[4],
             "time":15,
             "destination":"leaderHome",
             "shouldHide":true,
@@ -43,15 +45,36 @@
         "name": "tuuli",
         "displayName":"Tuuli",
         "initPosition":"leaderHome",
+        "isActived":true,
         "behaviors":[
           {
+            "weekdays":[4],
+            "time":7,
+            "delay":0.5,
+            "destination":"outVillage",
+            "startDialogue":"weekend",
+            "dialogue":"vacation",
+            "shouldHide":true
+          },
+          {
+            "weekdays":[4],
+            "time":17,
+            "delay":0.5,
+            "destination":"leaderHome",
+            "startDialogue":"weekend",
+            "finishDialogue":"weekend",
+            "shouldHide":true
+          },
+          {
             "time":8,
+            "ignoreWeekdays":[4],
             "destination":"tuuliPlayground",
             "startDialogue":"toPlay",
             "finishDialogue":"toPlay"
           },
           {
             "time":17,
+            "ignoreWeekdays":[4],
             "destination":"leaderHome",
             "shouldHide":true,
             "startDialogue":"fromPlay"
@@ -62,6 +85,7 @@
         "name": "kiwi",
         "displayName":"Moncha",
         "initPosition":"kiwiHome",
+        "isActived":true,
         "behaviors":[
           {
             "time":20,
@@ -78,9 +102,10 @@
         ]
       },
       {
-        "name": "bird",
+        "name": "hikeguy",
         "displayName":"Everest",
         "initPosition":"birdHome",
+        "isActived":true,
         "behaviors":[
           {
             "time":8,
@@ -97,19 +122,20 @@
         ]
       },
       {
-        "name": "leg",
+        "name": "legguy",
         "displayName":"Nova",
-        "initPosition":"backery",
+        "initPosition":"backeryHome",
+        "isActived":true,
         "behaviors":[
           {
             "time":12,
-            "destination":"secretPlace",
+            "destination":"legguyout",
             "startDialogue":"toPlay",
             "finishDialogue":"toPlay"
           },
           {
             "time":19,
-            "destination":"backery",
+            "destination":"backeryHome",
             "shouldHide":true,
             "startDialogue":"fromPlay"
           }
@@ -118,17 +144,18 @@
       {
         "name": "backery",
         "displayName":"Suki",
-        "initPosition":"backery",
+        "initPosition":"backeryHome",
+        "isActived":true,
         "behaviors":[
           {
             "time":14,
-            "destination":"secretPlaceOut",
+            "destination":"backeryOut",
             "startDialogue":"toPlay",
             "finishDialogue":"toPlay"
           },
           {
             "time":18,
-            "destination":"backery",
+            "destination":"backeryHome",
             "shouldHide":true,
             "startDialogue":"fromPlay"
           }
@@ -138,9 +165,10 @@
         "name": "farmer",
         "displayName":"Rune",
         "initPosition":"farmerHome",
+        "isActived":true,
         "behaviors":[
           {
-            "time":5,
+            "time":8,
             "destination":"farmerHomeOut",
             "startDialogue":"toPlay",
             "finishDialogue":"toPlay"
@@ -178,7 +206,7 @@
         "initPosition":"salamanderHome",
         "behaviors":[
           {
-            "time":5,
+            "time":8,
             "destination":"salamanderHomeOut",
             "startDialogue":"toPlay",
             "finishDialogue":"toPlay"

@@ -9,6 +9,23 @@ public class Collectable : InteractiveItem
 {
     public float pickingUpTime;
     public string itemName = "leave";
+    public bool shouldHideAtBeginning = false;
+
+
+    public Sprite[] randomSprites;
+    void Awake()
+    {
+        QuestManager.Instance.itemsDict[name] = gameObject;
+        if (shouldHideAtBeginning)
+        {
+            gameObject.SetActive(false);
+        }
+        renderer = GetComponentInChildren<SpriteRenderer>();
+        if (randomSprites.Length > 0)
+        {
+            renderer.sprite = randomSprites[Random.Range(0, randomSprites.Length)];
+        }
+    }
     public override void Start()
     {
         base.Start();

@@ -22,9 +22,37 @@
         "pickupTime":0.3
       },
       {
+        "name": "saw",
+        "displayName":"Saw",
+        "description":"Can cut sticks down from tree",
+        "pickup":"Pickup Rake",
+        "pickupTime":0.3
+      },
+      {
+        "name": "chainsaw",
+        "displayName":"ChainSaw",
+        "description":"Can cut down the whole tree",
+        "pickup":"Pickup Rake",
+        "pickupTime":0.3
+      },
+      {
+        "name": "pickaxe",
+        "displayName":"Pick Axe",
+        "description":"Can dig stones",
+        "pickup":"Pickup Rake",
+        "pickupTime":0.3
+      },
+      {
         "name": "carrot",
         "displayName":"Carrot",
         "description":"Not my favorite vegetable.",
+        "pickup":"Harvest Carrot",
+        "pickupTime":2
+      },
+      {
+        "name": "carrotCake",
+        "displayName":"Carrot Cake",
+        "description":"Even child who hates carrot would love it.",
         "pickup":"Harvest Carrot",
         "pickupTime":2
       },
@@ -33,6 +61,27 @@
         "displayName":"Blue Gill",
         "description":"Looks tasty.",
         "pickup":"Pickup Blue Gill",
+        "pickupTime":1
+      },
+      {
+        "name": "kite",
+        "displayName":"Kite",
+        "description":"Hand-made kite, has some wear.",
+        "pickup":"Pickup Blue Gill",
+        "pickupTime":1
+      },
+      {
+        "name": "wheat",
+        "displayName":"Wheat",
+        "description":"Taste better with process.",
+        "pickup":"Harvest Wheat",
+        "pickupTime":1
+      },
+      {
+        "name": "pumpkin",
+        "displayName":"Pumpkin",
+        "description":"The most important vegetable in autumn.",
+        "pickup":"Harvest Pumpkin",
         "pickupTime":1
       }
     ]

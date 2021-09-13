@@ -6,7 +6,7 @@ using PixelCrushers.DialogueSystem;
 using Pool;
 
 public class NPCBehavior {
-
+    public float delay;
     public int[] weekdays;
     public int[] days;
     public int[] ignoreDays;
@@ -24,16 +24,19 @@ public class NPCInfo
     public string displayName;
     public string initPosition;
     public NPCBehavior[] behaviors;
+    public bool isActived;
 }
 public class AllNPCInfo
 {
     public List<NPCInfo> allNPC;
 }
+[DefaultExecutionOrder(-10)]
 public class NPCManager : Singleton<NPCManager>
 {
 
     //List<NPCInfo> allNPCs;
     public Dictionary<string, NPCInfo> npcDict;
+    public Dictionary<string, NPC> npcScriptDict = new Dictionary<string, NPC>();
     private void Awake()
     {
         string text = Resources.Load<TextAsset>("json/NPCBehavior").text;

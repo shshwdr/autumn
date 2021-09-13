@@ -15,6 +15,7 @@ public class PlayerPickup : MonoBehaviour
     CircleCollider2D triggerCollider;
     public float handRange = 0.5f;
     public float rakeRange = 1.5f;
+
     private void Awake()
     {
         pickingUpBar.SetActive(false);
@@ -84,16 +85,27 @@ public class PlayerPickup : MonoBehaviour
 
     public void startFishing()
     {
-
+        
         isPickingUp = true;
-        animator.SetBool("finding", true);
+        animator.SetTrigger("startFish");
     }
+    public void fishBiting()
+    {
 
+        animator.SetTrigger("fishBite");
+    }
     public void finishFishing()
     {
 
         isPickingUp = false;
-        animator.SetBool("finding", false);
+        animator.SetTrigger("finishFish");
+    }
+
+    public void stopFishing()
+    {
+
+        isPickingUp = false;
+        animator.SetTrigger("stopFish");
     }
 
     public void startPickupItem()

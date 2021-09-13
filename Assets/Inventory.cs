@@ -25,6 +25,13 @@ public class Inventory : Singleton<Inventory>
 
     public int inventoryUnlockedCellCount = 2;
     public string selectedItemName;
+
+    public void addInventoryUnlockedCell()
+    {
+        inventoryUnlockedCellCount++;
+
+        EventPool.Trigger("updateInventory");
+    }
     public bool canAddItem(string itemName, int value = 1)
     {
         return true;
@@ -75,7 +82,12 @@ public class Inventory : Singleton<Inventory>
         }
         EventPool.Trigger("updateInventory");
     }
-    public void addItem(string itemName, int value = 1)
+
+    public void addItem(string itemName)
+    {
+        addItem(itemName, 1);
+    }
+    public void addItem(string itemName, int value)
     {
         if (!canAddItem(itemName, value))
         {
@@ -114,6 +126,10 @@ public class Inventory : Singleton<Inventory>
         return hasItem("rake");
     }
 
+    public int itemAmount(string itemName)
+    {
+        return itemDict.ContainsKey(itemName) ? itemDict[itemName].amount : 0;
+    }
     public bool hasItemAmount(string itemName,int amount)
     {
         return itemDict.ContainsKey(itemName) && itemDict[itemName].amount >= amount;

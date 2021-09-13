@@ -14,7 +14,7 @@ public class QuestCell : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            if(child.name == "title")
+            if (child.name == "title")
             {
                 continue;
             }
@@ -26,23 +26,43 @@ public class QuestCell : MonoBehaviour
     {
         title.text = info.displayName;
         int i = 0;
-        foreach(var entry in info.entries)
+
+        foreach (var entry in info.entries)
         {
+
+            if (entry.unlockByLast && i>0)
+            {
+                if(info.entries[i-1].state != QuestState.success)
+                {
+                    continue;
+                }
+            }
+
             entries[i].SetActive(true);
 
             switch (entry.type)
             {
                 case "questItemAmount":
-                    entries[i].GetComponentInChildren<TMP_Text>().text = string.Format( entry.text,QuestManager.Instance.getQuestItemAmount(entry.subtype), entry.amount);
+                    entries[i].GetComponentInChildren<TMP_Text>().text = string.Format(entry.text, QuestManager.Instance.getQuestItemAmount(entry.subtype), entry.amount);
                     break;
                 case "variableAmount":
-                    
-                    int currentAmount = DialogueLua.GetVariable("meetVillagers").asInt;
+
+                    int currentAmount = DialogueLua.GetVariable(entry.subtype).asInt;
                     entries[i].GetComponentInChildren<TMP_Text>().text = string.Format(entry.text, currentAmount, entry.amount);
+                    break;
+                case "inventoryAmount":
+                    int invAMount = Inventory.Instance.itemAmount(entry.subtype);
+                    entries[i].GetComponentInChildren<TMP_Text>().text = string.Format(entry.text, invAMount, entry.amount);
 
                     break;
+                case "metNPC":
+                    if (DialogueLua.GetActorField(entry.subtype, "hasTalked").asBool)
+                    {
+                        entries[i].GetComponentInChildren<TMP_Text>().text = entry.text;
+                    }
+                    break;
             }
-            if(entry.state == QuestState.success)
+            if (entry.state == QuestState.success)
             {
                 entries[i].GetComponentInChildren<TMP_Text>().color = Color.green;
             }
@@ -53,12 +73,12 @@ public class QuestCell : MonoBehaviour
             }
             i++;
         }
-        if(info.state == QuestState.returnToNPC)
+        if (info.state == QuestState.returnToNPC)
         {
 
             entries[i].SetActive(true);
 
-            entries[i].GetComponentInChildren<TMP_Text>().text = string.Format(returnToNPCString, NPCManager.Instance.npcDict[ info.returnNPC].displayName);
+            entries[i].GetComponentInChildren<TMP_Text>().text = string.Format(returnToNPCString, NPCManager.Instance.npcDict[info.returnNPC].displayName);
 
             i++;
         }
@@ -72,6 +92,6 @@ public class QuestCell : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

@@ -8,9 +8,12 @@ public class Pond : InteractiveItem
     public string showText = "Start Fishing";
     bool isFishing;
     PlayerPickup player;
-
+    bool isFishBiting;
     public float fishWaitingTimeMin = 3f;
     public float fishWaitingTimeMax = 8f;
+
+    public float fishBiteTime = 1f;
+    float currentFishBiteTime = 0f;
     float fishWaitTime;
     float currentWaitTime;
     // Start is called before the first frame update
@@ -33,23 +36,63 @@ public class Pond : InteractiveItem
     // Update is called once per frame
     void Update()
     {
+
         if(isFishing && Input.GetKeyDown(KeyCode.Space))
         {
-            isFishing = false;
-            player.finishFishing();
+            if (isFishBiting)
+            {
+                finishFish(true);
+
+            }
+            //else
+            //{
+
+            //    isFishing = false;
+            //    player.finishFishing();
+            //}
         }
         if (isFishing)
         {
-            currentWaitTime += Time.deltaTime;
-            if (currentWaitTime >= fishWaitTime)
+            if (isFishBiting)
+            {
+                currentFishBiteTime += Time.deltaTime;
+                if (currentFishBiteTime >= fishBiteTime)
+                {
+                    finishFish(false);
+                }
+            }
+            else
             {
 
-                isFishing = false;
-                player.finishFishing();
-                getReward();
+                currentWaitTime += Time.deltaTime;
+                if (currentWaitTime >= fishWaitTime)
+                {
+
+                    isFishBiting = true;
+                    currentFishBiteTime = 0;
+                    player.fishBiting();
+                }
             }
         }
     }
+
+    void finishFish(bool succeed)
+    {
+        isFishing = false;
+        isFishBiting = false;
+        if (succeed)
+        {
+
+            player.finishFishing();
+            getReward();
+        }
+        else
+        {
+
+            player.stopFishing();
+        }
+    }
+
 
     void getReward()
     {

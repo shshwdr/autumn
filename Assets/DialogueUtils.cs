@@ -40,5 +40,6 @@ public class DialogueUtils : Singleton<DialogueUtils>
         {
             item.SetActive(true);
         }
+        QuestManager.Instance.updateQuestFromNoWhere();
     }
 }
