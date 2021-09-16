@@ -6,8 +6,8 @@ using UnityEngine;
 public class MusicManager : Singleton<MusicManager>
 {
     AudioSource[] audiosources;
-    float bgmVolume = 0.9f;
-    float changeTime = 5f;
+    public float bgmVolume = 0.9f;
+    public float changeTime = 5f;
     public void stopAll()
     {
         for(int i = 0;i<2;i++)

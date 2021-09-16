@@ -25,8 +25,12 @@ public class Pond : InteractiveItem
     }
     public override void interact(PlayerPickup p)
     {
-        base.interact(player);
         player = p;
+        base.interact(player);
+        if (!canInteract())
+        {
+            return;
+        }
         player.startFishing();
         isFishing = true;
         fishWaitTime = Random.Range(fishWaitingTimeMin, fishWaitingTimeMax);
@@ -97,8 +101,7 @@ public class Pond : InteractiveItem
     }
     protected override bool canInteract()
     {
-        Inventory.Instance.hasItem("fishrod");
-        return true;
+        return Inventory.Instance.hasItem("fishrod");
     }
 
     void getReward()

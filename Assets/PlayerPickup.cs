@@ -167,4 +167,8 @@ public class PlayerPickup : MonoBehaviour
         collectables.Remove(c);
     }
 
+    public void playSuccessAnim()
+    {
+        animator.SetTrigger("success");
+    }
 }

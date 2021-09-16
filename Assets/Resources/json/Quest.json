@@ -80,6 +80,27 @@
             "text":"Meet {0} / {1} villagers"
           }
         ]
+      },{
+        "name": "helpEveryone",
+        "displayName":"Make Everyone happy",
+        "returnNPC":"leader",
+        
+        "grantRequest":[
+          {
+            "type":"finishQuest",
+            "subtype":"meetEveryone"
+          }
+        ],
+        "reward":[
+        ],
+        "entries":[
+          {
+            "amount":8,
+            "type":"variableAmount",
+            "subtype":"helpVillagers",
+            "text":"Make {0} / {1} villagers Happy"
+          }
+        ]
       },
       
       {

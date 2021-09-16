@@ -331,6 +331,7 @@ public class QuestManager : Singleton<QuestManager>
     }
     public void finishQuest(string name)
     {
+        GameManager.Instance.player.playSuccessAnim();
         MusicManager.Instance.playSound(finishQuestSFX);
         var info = questDict[name];
         info.state = QuestState.success;

@@ -41,6 +41,7 @@ public class Inventory : Singleton<Inventory>
     }
     public bool canAddItem(string itemName, int value = 1)
     {
+        GameManager.Instance.player.playSuccessAnim();
         return true;
         //if (itemValueDict.ContainsKey(itemName))
         //{
@@ -187,7 +188,10 @@ public class Inventory : Singleton<Inventory>
         {
             foreach(var key in itemDict.Keys)
             {
-                itemDict[key].amount += 1;
+                if (!itemDict[key].noItemCollected)
+                {
+                    itemDict[key].amount += 1;
+                }
             }
         }
     }

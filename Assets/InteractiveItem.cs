@@ -27,10 +27,6 @@ public class InteractiveItem:MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!canInteract())
-        {
-            return;
-        }
         if (isInteractiveDisabled)
         {
             return;
@@ -45,10 +41,6 @@ public class InteractiveItem:MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (!canInteract())
-        {
-            return;
-        }
         var player = collision.GetComponent<PlayerPickup>();
         if (player)
         {
@@ -66,7 +58,7 @@ public class InteractiveItem:MonoBehaviour
 
         if (!canInteract())
         {
-            player.failedPickup();
+             player.failedPickup();
             DialogueManager.ShowAlert("Need extra equipment!");
             return;
         }
@@ -82,10 +74,6 @@ public class InteractiveItem:MonoBehaviour
     public void showPickupUI()
     {
 
-        if (!canInteract())
-        {
-            return;
-        }
         if (isInteractiveDisabled)
         {
             return;

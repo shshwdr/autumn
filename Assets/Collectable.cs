@@ -59,6 +59,10 @@ public class Collectable : InteractiveItem
     public override void interact(PlayerPickup player)
     {
         base.interact(player);
+        if (!canInteract())
+        {
+            return;
+        }
         player.pickingUpBar.SetActive(true);
         showPickingUpBar(player.pickingUpBar);
         if (info.animation!=null)

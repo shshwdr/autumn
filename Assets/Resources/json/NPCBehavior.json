@@ -172,15 +172,22 @@
           {
             "time":14,
             "destination":"backeryOut",
-            "startDialogue":"toPlay",
-            "finishDialogue":"toPlay"
+            "startDialogue":"follow",
+            "finishDialogue":"follow"
           },
           {
             "time":18,
             "destination":"backeryHome",
             "shouldHide":true,
-            "startDialogue":"fromPlay"
+            "startDialogue":"follow"
+          },
+          {
+            "time":10,
+            "destination":"backeryHomeOut",
+            "startDialogue":"toPlay",
+            "finishDialogue":"toPlay"
           }
+          
         ]
       },
       {
@@ -239,7 +246,7 @@
             "destination":"salamanderForest2"
           },
           {
-            "time":14,
+            "time":16,
             "finishQuest":"findAFriend",
             "destination":"salamanderHome",
             "shouldHide":true
