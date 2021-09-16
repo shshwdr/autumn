@@ -10,7 +10,7 @@ public class Collectable : InteractiveItem
     public float pickingUpTime;
     public string itemName = "leave";
     public bool shouldHideAtBeginning = false;
-
+    ItemInfo info;
 
     public Sprite[] randomSprites;
     void Awake()
@@ -28,9 +28,14 @@ public class Collectable : InteractiveItem
     }
     public override void Start()
     {
+        if (!Inventory.Instance.itemDict.ContainsKey(itemName))
+        {
+            Debug.Log("do not have key " + itemName);
+        }
+        info = Inventory.Instance.itemDict[itemName];
         base.Start();
-        interactiveText.text = Inventory.Instance.itemDict[itemName].pickup;
-        pickingUpTime = Inventory.Instance.itemDict[itemName].pickupTime;
+        interactiveText.text = info.pickup;
+        pickingUpTime = info.pickupTime;
     }
 
     
@@ -42,12 +47,28 @@ public class Collectable : InteractiveItem
         DOTween.To(() => pickingUpImage.fillAmount, x => pickingUpImage.fillAmount = x, 1, pickingUpTime);
 
     }
+
+    protected override bool canInteract()
+    {
+        if(info.conditionInventory != null)
+        {
+            return Inventory.Instance.hasItem(info.conditionInventory);
+        }
+        return true;
+    }
     public override void interact(PlayerPickup player)
     {
         base.interact(player);
         player.pickingUpBar.SetActive(true);
         showPickingUpBar(player.pickingUpBar);
-        player.startPickupItem();
+        if (info.animation!=null)
+        {
+            player.startPlayAnimation(info.animation);
+        }
+        else
+        {
+            player.startPickupItem();
+        }
         StartCoroutine(pickupItem(player));
     }
 
@@ -55,11 +76,30 @@ public class Collectable : InteractiveItem
     {
 
         yield return new WaitForSeconds(pickingUpTime);
-        Inventory.Instance.addItem(itemName, 1);
+        if (info.variable!=null)
+        {
+            DialogueLua.SetVariable(info.variable, DialogueLua.GetVariable(info.variable).asInt + 1);
+        }
+        if(!info.noItemCollected)
+        {
+
+            Inventory.Instance.addItem(itemName, 1);
+        }
         QuestManager.Instance.addQuestItem(itemName, 1);
         //DialogueLua.SetVariable("cleanedLeaves", DialogueLua.GetVariable("cleanedLeaves").asInt + 1);
-        player.finishPickupItem();
+        if (info.animation != null)
+        {
+            player.finishPlayAnimation(info.animation);
+        }
+        else
+        {
+            player.finishPickupItem();
+        }
         player.pickingUpBar.SetActive(false);
+        if (info.dialogue!=null)
+        {
+            DialogueManager.instance.StartConversation(info.dialogue);
+        }
         Destroy(gameObject);
     }
 }

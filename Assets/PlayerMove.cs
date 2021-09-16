@@ -6,7 +6,9 @@ public class PlayerMove : CharacterMove
 {
     Vector2 movement;
     PlayerPickup pickup;
-    public bool isFacingRight;
+    public AudioClip[] moveClips;
+    public float moveSoundInterval = 0.4f;
+    float currentMoveSoundTime = 0f;
     // Start is called before the first frame update
 
     protected override void Awake()
@@ -47,6 +49,19 @@ public class PlayerMove : CharacterMove
         Vector2 currentPosition = rb.position;
         //rb.MovePosition(currentPosition + movement * Time.deltaTime);
         rb.MovePosition(currentPosition+ movement * Time.deltaTime);
+        if (movement.SqrMagnitude() > 0.01f)
+        {
+            currentMoveSoundTime += Time.deltaTime;
+            if (currentMoveSoundTime >= moveSoundInterval)
+            {
+                currentMoveSoundTime = 0;
+                MusicManager.Instance.playSFXRandom(moveClips);
+            }
+        }
+        else
+        {
+            currentMoveSoundTime = 0;
+        }
         
     }
 }

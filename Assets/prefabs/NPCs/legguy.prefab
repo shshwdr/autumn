@@ -11,9 +11,13 @@ PrefabInstance:
       propertyPath: name
       value: tuuli
       objectReference: {fileID: 0}
+    - target: {fileID: 2959707486550136964, guid: a41ba57e073481042b4ad5efb1eabb20, type: 3}
+      propertyPath: facingRight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2959707486550136965, guid: a41ba57e073481042b4ad5efb1eabb20, type: 3}
       propertyPath: m_Name
-      value: tuuli
+      value: legguy
       objectReference: {fileID: 0}
     - target: {fileID: 2959707486550136989, guid: a41ba57e073481042b4ad5efb1eabb20, type: 3}
       propertyPath: m_RootOrder

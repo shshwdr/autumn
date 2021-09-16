@@ -10,36 +10,71 @@
       },{
         "name": "stick",
         "displayName":"Stick",
-        "description":"Stick of maple",
-        "pickup":"Clean Sticks",
-        "pickupTime":1
+        "description":"Stick of bush, can make structure of house",
+        "pickup":"Prune Bush",
+        "animation":"saw",
+        "conditionInventory":"saw",
+        "pickupTime":1.5
+      },{
+        "name": "wood",
+        "displayName":"Wood",
+        "description":"Wood of stout, stronger than stick",
+        "pickup":"Cut Tree Stout",
+        "animation":"chainsaw",
+        "conditionInventory":"chainsaw",
+        "isImportant":true,
+        "pickupTime":2
+      },{
+        "name": "fallingtree",
+        "displayName":"Wood",
+        "description":"Wood of stout, stronger than stick",
+        "pickup":"Cut Falling Tree",
+        "animation":"chainsaw",
+        "conditionInventory":"chainsaw",
+        "dialogue":"fallingTree",
+        "noItemCollected":true,
+        "pickupTime":4
       },
       {
-        "name": "rake",
-        "displayName":"Rake",
-        "description":"Can reach items far away",
-        "pickup":"Pickup Rake",
-        "pickupTime":0.3
+        "name": "rock",
+        "displayName":"Rock",
+        "description":"Small rocks, stonger and fire proof",
+        "pickup":"Dig Rocks",
+        "animation":"pickaxe",
+        "conditionInventory":"pickaxe",
+        "isImportant":true,
+        "pickupTime":2
       },
       {
         "name": "saw",
         "displayName":"Saw",
         "description":"Can cut sticks down from tree",
         "pickup":"Pickup Rake",
-        "pickupTime":0.3
+        "isImportant":true,
+        "pickupTime":2
       },
       {
         "name": "chainsaw",
         "displayName":"ChainSaw",
         "description":"Can cut down the whole tree",
         "pickup":"Pickup Rake",
-        "pickupTime":0.3
+        "isImportant":true,
+        "pickupTime":3
       },
       {
         "name": "pickaxe",
         "displayName":"Pick Axe",
         "description":"Can dig stones",
         "pickup":"Pickup Rake",
+        "isImportant":true,
+        "pickupTime":0.3
+      },
+      {
+        "name": "fishrod",
+        "displayName":"Fish rod",
+        "description":"Can be used for fishing",
+        "pickup":"Pickup Rake",
+        "isImportant":true,
         "pickupTime":0.3
       },
       {
@@ -68,6 +103,7 @@
         "displayName":"Kite",
         "description":"Hand-made kite, has some wear.",
         "pickup":"Pickup Blue Gill",
+        "isImportant":true,
         "pickupTime":1
       },
       {
@@ -82,6 +118,30 @@
         "displayName":"Pumpkin",
         "description":"The most important vegetable in autumn.",
         "pickup":"Harvest Pumpkin",
+        "pickupTime":1
+      },
+      {
+        "name": "pumpkinCake",
+        "displayName":"Pumpkin Cake",
+        "description":"Pie make of pumpkin, a warm color.",
+        "pickup":"Harvest Pumpkin",
+        "pickupTime":1
+      },
+      {
+        "name": "fishCake",
+        "displayName":"Stargazy Pie",
+        "description":"Looks suspicious, the fish is looking at me!!",
+        "pickup":"Harvest Pumpkin",
+        "pickupTime":1
+      },
+      {
+        "name": "footprint",
+        "displayName":"Leave",
+        "description":"Leave of maple",
+        "pickup":"Investigate Footprint",
+        "dialogue":"footprint",
+        "variable":"foundFootprint",
+        "noItemCollected":true,
         "pickupTime":1
       }
     ]

@@ -5,7 +5,7 @@ using UnityEngine;
 using DG.Tweening;
 using PixelCrushers.DialogueSystem;
 
-public class NPC : CharacterMove
+public class NPC : MonoBehaviour
 {
     [HideInInspector]
     public NPCInfo info;
@@ -46,9 +46,8 @@ public class NPC : CharacterMove
 
     }
 
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
         talkable = GetComponent<Talkable>();
         pathFinding = GetComponent<NPCPathFinding>();
         hideAllQuestMarkers();
@@ -96,6 +95,11 @@ public class NPC : CharacterMove
                 continue;
             }
             if (behavior.ignoreDays != null && Utils.arrayContains(behavior.ignoreDays, time.day))
+            {
+                continue;
+            }
+            if(behavior.finishQuest!=null && 
+                QuestManager.Instance.questDict[behavior.finishQuest].state != QuestState.success)
             {
                 continue;
             }

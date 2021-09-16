@@ -11,6 +11,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: a48b2663bd415674da0a443b5deba105, type: 3}
+    - target: {fileID: 5151633042628339880, guid: 7eaeb52742880ed46b2d833f870c32a1, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5151633042628339880, guid: 7eaeb52742880ed46b2d833f870c32a1, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5151633042628339880, guid: 7eaeb52742880ed46b2d833f870c32a1, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 107371005
+      objectReference: {fileID: 0}
     - target: {fileID: 6623854117621119860, guid: 7eaeb52742880ed46b2d833f870c32a1, type: 3}
       propertyPath: m_RootOrder
       value: 0

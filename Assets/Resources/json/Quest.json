@@ -5,11 +5,22 @@
         "name": "cleanLeaves",
         "displayName":"Clean Leaves",
         "returnNPC":"leader",
-        "activateNext":"cleanLeaves2",
         "reward":[
           {
             "type":"item",
             "subtype":"rake",
+            "amount":1
+          },{
+            "type":"item",
+            "subtype":"saw",
+            "amount":1
+          },{
+            "type":"item",
+            "subtype":"chainsaw",
+            "amount":1
+          },{
+            "type":"item",
+            "subtype":"pickaxe",
             "amount":1
           },{
             "type":"friendship",
@@ -60,11 +71,6 @@
         "returnNPC":"leader",
         "grantRequest":[],
         "reward":[
-          {
-            "type":"inventoryCell",
-            "subtype":"inventoryCell",
-            "amount":1
-          }
         ],
         "entries":[
           {
@@ -180,15 +186,15 @@
         "activeBehavior":[
           {
             "type":"showItem",
-            "subtype":"suspicousFootprint1"
+            "subtype":"footprint1"
           },
           {
             "type":"showItem",
-            "subtype":"suspicousFootprint2"
+            "subtype":"footprint2"
           },
           {
             "type":"showItem",
-            "subtype":"suspicousFootprint3"
+            "subtype":"footprint3"
           }
         ],
         "reward":[
@@ -214,6 +220,126 @@
             "subtype":"talkedToSukiAboutPumpking",
             "text":"Talk to suspect",
             "unlockByLast":true
+          }
+        ]
+      },
+      {
+        "name": "surviveWinter",
+        "displayName":"Help Ainsley survive the winter",
+        "returnNPC":"bear",
+        "grantRequest":[
+          {
+            "type":"friendship",
+            "subtype":"bear",
+            "amount":20
+          }
+        ],
+        "activeBehavior":[
+        ],
+        "reward":[
+          {
+          "type":"item",
+          "subtype":"pickaxe",
+          "amount":1
+        },{
+          "type":"friendship",
+          "subtype":"bear",
+          "amount":10
+        }
+        ],
+        "entries":[
+          {
+            "type":"inventoryAmount",
+            "subtype":"fishCake",
+            "amount":1,
+            "text":"Make food contains fish {0} / {1}"
+          }
+        ]
+      },
+      {
+        "name": "anotherNocturnal",
+        "displayName":"Find a friend for Moncha",
+        "returnNPC":"kiwi",
+        "grantRequest":[
+          {
+            "type":"friendship",
+            "subtype":"kiwi",
+            "amount":20
+          }
+        ],
+        "activeBehavior":[
+        ],
+        "reward":[
+          {
+          "type":"item",
+          "subtype":"fishrod",
+          "amount":1
+        },{
+          "type":"friendship",
+          "subtype":"kiwi",
+          "amount":10
+        }
+        ],
+        "entries":[
+          {
+            "type":"variableAmount",
+            "subtype":"anotherNocturnal",
+            "amount":1,
+            "text":"Find someone want to hangout at night"
+          }
+        ]
+      },
+      {
+        "name": "anotherJob",
+        "displayName":"Find a safe job for Nova",
+        "returnNPC":"legguy",
+        "grantRequest":[
+          {
+            "type":"friendship",
+            "subtype":"legguy",
+            "amount":20
+          },
+          
+          {
+            "type":"finishQuest",
+            "subtype":"treeSound"
+          }
+        ],
+        "activeBehavior":[
+        ],
+        "reward":[{
+          "type":"friendship",
+          "subtype":"legguy",
+          "amount":10
+        }
+        ],
+        "entries":[
+          {
+            "type":"variableAmount",
+            "subtype":"anotherJob",
+            "amount":1,
+            "text":"Anyone want to change job?"
+          }
+        ]
+      },
+      {
+        "name": "findAFriend",
+        "displayName":"Find a friend for Elam",
+        "returnNPC":"salamander",
+        "activeBehavior":[
+        ],
+        "reward":[{
+          "type":"friendship",
+          "subtype":"salamander",
+          "amount":10
+        }
+        ],
+        "entries":[
+          {
+            "type":"variableAmount",
+            "subtype":"aFriend",
+            "amount":1,
+            "text":"Anyone want a friend?"
           }
         ]
       }

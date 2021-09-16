@@ -111,6 +111,10 @@ public class Utils : MonoBehaviour
   //  if j <= k
   //      R[j] := S[i]
         List<int> res = new List<int>();
+        if(count == 0)
+        {
+            return res;
+        }
         for (int i = 0; i < selectCount; i++)
         {
             res.Add(i);

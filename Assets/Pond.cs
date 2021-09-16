@@ -16,6 +16,7 @@ public class Pond : InteractiveItem
     float currentFishBiteTime = 0f;
     float fishWaitTime;
     float currentWaitTime;
+    bool fullyFinished = true;
     // Start is called before the first frame update
     public override void Start()
     {
@@ -44,12 +45,6 @@ public class Pond : InteractiveItem
                 finishFish(true);
 
             }
-            //else
-            //{
-
-            //    isFishing = false;
-            //    player.finishFishing();
-            //}
         }
         if (isFishing)
         {
@@ -78,7 +73,7 @@ public class Pond : InteractiveItem
 
     void finishFish(bool succeed)
     {
-        isFishing = false;
+        currentFishBiteTime = 0;
         isFishBiting = false;
         if (succeed)
         {
@@ -91,8 +86,20 @@ public class Pond : InteractiveItem
 
             player.stopFishing();
         }
+        StartCoroutine(finalFinish());
     }
 
+    IEnumerator finalFinish()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        isFishing = false;
+    }
+    protected override bool canInteract()
+    {
+        Inventory.Instance.hasItem("fishrod");
+        return true;
+    }
 
     void getReward()
     {

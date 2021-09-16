@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 6419668214213163124}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6623854117621119860}
   m_RootOrder: 1
@@ -149,6 +149,8 @@ MonoBehaviour:
   isInteractiveDisabled: 0
   pickingUpTime: 1
   itemName: leave
+  shouldHideAtBeginning: 0
+  randomSprites: []
 --- !u!1001 &346293640720837892
 PrefabInstance:
   m_ObjectHideFlags: 0

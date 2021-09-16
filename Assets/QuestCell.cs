@@ -56,10 +56,7 @@ public class QuestCell : MonoBehaviour
 
                     break;
                 case "metNPC":
-                    if (DialogueLua.GetActorField(entry.subtype, "hasTalked").asBool)
-                    {
                         entries[i].GetComponentInChildren<TMP_Text>().text = entry.text;
-                    }
                     break;
             }
             if (entry.state == QuestState.success)

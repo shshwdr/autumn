@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ItemAutoGeneration : MonoBehaviour
 {
+    bool isFirstGeneration = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,14 @@ public class ItemAutoGeneration : MonoBehaviour
         var count = int.Parse( fullName[1]);
         GameObject prefab = Resources.Load<GameObject>("item/" + prefabName);
         var selectedIndex = Utils.randomMultipleIndex(parent.childCount, count);
+        if(count == 0 && isFirstGeneration)
+        {
+            selectedIndex = new List<int>();
+            for(int i = 0; i < parent.childCount; i++)
+            {
+                selectedIndex.Add(i);
+            }
+        }
         foreach(var selected in selectedIndex)
         {
             var position = parent.GetChild(selected).position;
@@ -34,6 +43,7 @@ public class ItemAutoGeneration : MonoBehaviour
         {
             generateItem(t);
         }
+        isFirstGeneration = false;
     }
     // Update is called once per frame
     void Update()

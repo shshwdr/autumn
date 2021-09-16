@@ -10,9 +10,11 @@ public class NPCBehavior {
     public int[] weekdays;
     public int[] days;
     public int[] ignoreDays;
+    public string destination;
     public int[] ignoreWeekdays;
     public int time;
-    public string destination;
+    public string finishQuest;
+    public string notFinishQuest;
     public string startDialogue;
     public string finishDialogue;
     public bool shouldHide;

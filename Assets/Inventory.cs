@@ -14,6 +14,13 @@ public class ItemInfo
     public float pickupTime;
     public string description;
     public int amount;
+    public string dialogue;
+    public string variable;
+    public string conditionInventory;
+    public string animation;
+    public bool noItemCollected;
+    public bool isImportant;
+
 }
 public class AllItemInfo
 {
@@ -52,6 +59,30 @@ public class Inventory : Singleton<Inventory>
         selectedItemName = name;
 
         DialogueLua.SetVariable("holdingItem", name);
+    }
+
+    public void checkCake(string cakeName)
+    {
+        bool isvalid = true;
+        if (itemDict["wheat"].amount < 2)
+        {
+            isvalid = false;
+        }
+        if (itemDict[cakeName].amount < 2)
+        {
+            isvalid = false;
+
+        }
+        DialogueLua.SetVariable("cakeType", cakeName);
+        DialogueLua.SetVariable("cakeDoable", isvalid);
+        
+    }
+        public void makeCake()
+    {
+        consumeItem("wheat", 2);
+        string cakeType = DialogueLua.GetVariable("cakeType").asString;
+        consumeItem(cakeType, 2);
+        addItem(cakeType + "Cake", 1);
     }
 
     public void sendGift()
@@ -152,6 +183,12 @@ public class Inventory : Singleton<Inventory>
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            foreach(var key in itemDict.Keys)
+            {
+                itemDict[key].amount += 1;
+            }
+        }
     }
 }

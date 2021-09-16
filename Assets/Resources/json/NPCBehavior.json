@@ -108,13 +108,35 @@
         "isActived":true,
         "behaviors":[
           {
-            "time":8,
+            "time":9,
+            "finishQuest":"forestSound",
+            "destination":"forestDeepHike",
+            "startDialogue":"deepForest",
+            "finishDialogue":"deepForest"
+          },
+          {
+            "time":14,
+            "finishQuest":"forestSound",
+            "destination":"forestDeepHike2",
+            "startDialogue":"deepForest",
+            "finishDialogue":"deepForest"
+          },
+          {
+            "time":16,
+            "finishQuest":"forestSound",
+            "destination":"birdHome",
+            "shouldHide":true,
+            "startDialogue":"deepForest",
+            "finishDialogue":"deepForest"
+          },
+          {
+            "time":9,
             "destination":"forestEntrance",
             "startDialogue":"toPlay",
             "finishDialogue":"toPlay"
           },
           {
-            "time":15,
+            "time":14,
             "destination":"birdHome",
             "shouldHide":true,
             "startDialogue":"fromPlay"
@@ -206,7 +228,24 @@
         "initPosition":"salamanderHome",
         "behaviors":[
           {
-            "time":8,
+            "time":9,
+            "finishQuest":"findAFriend",
+            "destination":"salamanderForest",
+            "startDialogue":"hikeTogether"
+          },
+          {
+            "time":14,
+            "finishQuest":"findAFriend",
+            "destination":"salamanderForest2"
+          },
+          {
+            "time":14,
+            "finishQuest":"findAFriend",
+            "destination":"salamanderHome",
+            "shouldHide":true
+          },
+          {
+            "time":9,
             "destination":"salamanderHomeOut",
             "startDialogue":"toPlay",
             "finishDialogue":"toPlay"

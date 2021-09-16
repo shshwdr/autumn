@@ -32,6 +32,7 @@ public class QuestInfo
     public QuestState state;
     public GeneralTypeAmount[] reward;
     public GeneralTypeAmount[] grantBehavior;
+    public GeneralTypeAmount[] activeBehavior;
     public GeneralTypeAmount[] grantRequest;
     public QuestEntry[] entries;
 }
@@ -39,7 +40,7 @@ public class AllQuestInfo
 {
     public List<QuestInfo> allQuest;
 }
-public enum QuestState { unassigned, active, returnToNPC,success,grantable}
+public enum QuestState { unassigned, active, returnToNPC, success, grantable }
 public class QuestManager : Singleton<QuestManager>
 {
     public Dictionary<string, GameObject> itemsDict = new Dictionary<string, GameObject>();
@@ -47,6 +48,8 @@ public class QuestManager : Singleton<QuestManager>
     public Dictionary<string, QuestInfo> questDict;
     public Dictionary<string, int> questAmountItemDict = new Dictionary<string, int>();
 
+    public AudioClip addQuestSFX;
+    public AudioClip finishQuestSFX;
     public void updateQuestFromNoWhere()
     {
 
@@ -70,6 +73,7 @@ public class QuestManager : Singleton<QuestManager>
         }
     }
     public List<QuestInfo> activeQuests()
+
     {
         var res = new List<QuestInfo>();
         foreach (var info in QuestManager.Instance.questDict.Values)
@@ -96,10 +100,10 @@ public class QuestManager : Singleton<QuestManager>
     }
     void updateQuestState()
     {
-        foreach(var info in activeQuests())
+        foreach (var info in activeQuests())
         {
             bool isFinished = true;
-            foreach(var entry in info.entries)
+            foreach (var entry in info.entries)
             {
                 switch (entry.type)
                 {
@@ -151,16 +155,17 @@ public class QuestManager : Singleton<QuestManager>
 
     public void updateGrantQuest()
     {
-        foreach(var info in unsignedQuests())
+        foreach (var info in unsignedQuests())
         {
-            if (info.grantRequest!=null)
+            if (info.grantRequest != null)
             {
                 bool allFinished = true;
-                foreach(var request in info.grantRequest)
+                foreach (var request in info.grantRequest)
                 {
-                    switch (request.type) {
+                    switch (request.type)
+                    {
                         case "finishQuest":
-                            if(questDict[request.subtype].state != QuestState.success)
+                            if (questDict[request.subtype].state != QuestState.success)
                             {
                                 allFinished = false;
                             }
@@ -184,7 +189,7 @@ public class QuestManager : Singleton<QuestManager>
     }
     void startNextQuest(QuestInfo info)
     {
-        if (info.activateNext!=null)
+        if (info.activateNext != null)
         {
             activateQuest(info.activateNext);
         }
@@ -203,7 +208,7 @@ public class QuestManager : Singleton<QuestManager>
                     break;
                 case "item":
                     Inventory.Instance.addItem(reward.subtype);
-                    DialogueManager.ShowAlert("Get a " + reward.subtype+"!");//Inventory.Instance.item);
+                    DialogueManager.ShowAlert("Get a " + reward.subtype + "!");//Inventory.Instance.item);
                     break;
                 case "inventoryCell":
                     Inventory.Instance.addInventoryUnlockedCell();
@@ -240,7 +245,7 @@ public class QuestManager : Singleton<QuestManager>
 
     public void changeQuestState(string[] args)
     {
-        switch(args[0])
+        switch (args[0])
         {
             case "active":
                 if (questDict[args[1]].state != QuestState.active)
@@ -266,7 +271,8 @@ public class QuestManager : Singleton<QuestManager>
     }
     public void activateQuest(string name)
     {
-
+        MusicManager.Instance.playSound(addQuestSFX);
+        doBehaviors(questDict[name].activeBehavior);
         questDict[name].state = QuestState.active;
         questController.UpdateQuest();
         DialogueLua.SetQuestField(name, "State", "active");
@@ -304,6 +310,7 @@ public class QuestManager : Singleton<QuestManager>
                     NPCManager.Instance.npcScriptDict[behavior.subtype].activate();
 
                     break;
+
             }
 
         }
@@ -316,7 +323,7 @@ public class QuestManager : Singleton<QuestManager>
         DialogueLua.SetQuestField(name, "State", "grantable");
 
         var returnNPC = questDict[name].returnNPC;
-        if (returnNPC!=null)
+        if (returnNPC != null)
         {
 
             NPCManager.Instance.npcScriptDict[returnNPC].willGrantQuest();
@@ -324,6 +331,7 @@ public class QuestManager : Singleton<QuestManager>
     }
     public void finishQuest(string name)
     {
+        MusicManager.Instance.playSound(finishQuestSFX);
         var info = questDict[name];
         info.state = QuestState.success;
 
@@ -349,6 +357,6 @@ public class QuestManager : Singleton<QuestManager>
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

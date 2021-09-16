@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using PixelCrushers.DialogueSystem;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -65,6 +66,8 @@ public class InteractiveItem:MonoBehaviour
 
         if (!canInteract())
         {
+            player.failedPickup();
+            DialogueManager.ShowAlert("Need extra equipment!");
             return;
         }
         if (isInteractiveDisabled)

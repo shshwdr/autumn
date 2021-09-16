@@ -23,6 +23,7 @@ public class PlayerPickup : MonoBehaviour
         triggerCollider = GetComponent<CircleCollider2D>();
 
         EventPool.OptIn("updateInventory",updateRake);
+        GameManager.Instance.player = this;
     }
 
     public void failedPickup()
@@ -97,8 +98,13 @@ public class PlayerPickup : MonoBehaviour
     public void finishFishing()
     {
 
-        isPickingUp = false;
         animator.SetTrigger("finishFish");
+        StartCoroutine(fullyFinishFishing());
+    }
+    public IEnumerator fullyFinishFishing()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isPickingUp = false;
     }
 
     public void stopFishing()
@@ -108,11 +114,39 @@ public class PlayerPickup : MonoBehaviour
         animator.SetTrigger("stopFish");
     }
 
+    public void startPlayAnimation(string name)
+    {
+
+        isPickingUp = true;
+        animator.SetBool(name, true);
+    }
+    public void finishPlayAnimation(string name)
+    {
+
+        isPickingUp = false;
+        animator.SetBool(name, false);
+    }
     public void startPickupItem()
     {
         isPickingUp = true;
         animator.SetBool("hasRake", Inventory.Instance.hasRake());
         animator.SetBool("finding", true);
+
+        // yield return  lastClosest.startPicking(pickingUpBar);
+    }
+
+    public void startUpgrating()
+    {
+        isPickingUp = true;
+        animator.SetBool("upgrade", true);
+
+        // yield return  lastClosest.startPicking(pickingUpBar);
+    }
+
+    public void stopUpgrating()
+    {
+        isPickingUp = false;
+        animator.SetBool("upgrade", false);
 
         // yield return  lastClosest.startPicking(pickingUpBar);
     }

@@ -1,3 +1,4 @@
+using Pool;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,8 +15,20 @@ public class WorldColorController : MonoBehaviour
     void Start()
     {
         renderer = GetComponent<SpriteRenderer>();
+        EventPool.OptIn("hourChange",hourChange);
     }
+    void hourChange()
+    {
+        if(DayTimeManager.Instance.currentTime().hour == startDarkHour)
+        {
+            MusicManager.Instance.startEvening();
+        }
+        else if(DayTimeManager.Instance.currentTime().hour == startLightHour)
+        {
 
+            MusicManager.Instance.startMorning();
+        }
+    }
     // Update is called once per frame
     void Update()
     {

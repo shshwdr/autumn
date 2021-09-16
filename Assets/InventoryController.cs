@@ -20,8 +20,8 @@ public class InventoryController : MonoBehaviour
         }
         for(;i< Inventory.Instance.inventoryUnlockedCellCount; i++)
         {
-            inventoryCells[i].gameObject.SetActive(true);
-            inventoryCells[i].updateCell(null);
+            inventoryCells[i].gameObject.SetActive(false);
+            //inventoryCells[i].updateCell(null);
         }
         for (; i < inventoryCells.Count; i++)
         {

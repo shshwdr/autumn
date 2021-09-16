@@ -1,3 +1,4 @@
+using PixelCrushers.DialogueSystem;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -64,7 +65,25 @@ public class InventoryCell : MonoBehaviour, IPointerEnterHandler
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        Inventory.Instance.select(name);
+        if (name == "")
+        {
+            return;
+        }
+            if (!Inventory.Instance.itemDict.ContainsKey(name))
+        {
+            Debug.LogError("item not exist: " + name);
+        }
+        if (Inventory.Instance.itemDict[name].isImportant)
+        {
+            GameManager.Instance.player.failedPickup();
+            DialogueManager.ShowAlert("Important item, can't send it out.");
+
+        }
+        else
+        {
+
+            Inventory.Instance.select(name);
+        }
     }
     // Start is called before the first frame update
     void Start()
