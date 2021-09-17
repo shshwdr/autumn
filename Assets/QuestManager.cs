@@ -132,6 +132,21 @@ public class QuestManager : Singleton<QuestManager>
                             entry.state = QuestState.success;
                         }
                         break;
+                    case "fullFriendshipAmount":
+                        int fullFriendshipAmount = 0;
+                        foreach(var npc in NPCManager.Instance.npcDict.Keys)
+                        {
+                            if(DialogueLua.GetActorField(npc, "friendship").asInt >= 100)
+                            {
+                                fullFriendshipAmount += 1;
+                            }
+                        }
+                        if (fullFriendshipAmount >= entry.amount)
+                        {
+                            entry.state = QuestState.success;
+
+                        }
+                        break;
                 }
                 if (entry.state != QuestState.success)
                 {

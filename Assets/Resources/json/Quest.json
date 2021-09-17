@@ -98,6 +98,12 @@
             "amount":8,
             "type":"variableAmount",
             "subtype":"helpVillagers",
+            "text":"Solve {0} / {1} villagers' problem"
+          },
+          {
+            "amount":8,
+            "type":"fullFriendshipAmount",
+            "subtype":"happyVillagers",
             "text":"Make {0} / {1} villagers Happy"
           }
         ]
@@ -239,6 +245,7 @@
           {
             "type":"variableAmount",
             "subtype":"talkedToSukiAboutPumpking",
+            "amount":1,
             "text":"Talk to suspect",
             "unlockByLast":true
           }

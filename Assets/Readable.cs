@@ -5,6 +5,16 @@ using UnityEngine;
 public class Readable : InteractiveItem
 {
     public string showText;
+    public bool canShow = true;
+
+    public void HideReadable()
+    {
+        canShow = false;
+    }
+    protected override bool canShowInteractUI()
+    {
+        return canShow;
+    }
     // Start is called before the first frame update
     public override void Start()
     {

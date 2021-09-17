@@ -27,6 +27,10 @@ public class InteractiveItem:MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!canShowInteractUI())
+        {
+            return;
+        }
         if (isInteractiveDisabled)
         {
             return;
@@ -53,6 +57,11 @@ public class InteractiveItem:MonoBehaviour
         return true;
     }
 
+    protected virtual bool canShowInteractUI()
+    {
+        return true;
+    }
+
     public virtual void interact(PlayerPickup player)
     {
 
@@ -73,7 +82,10 @@ public class InteractiveItem:MonoBehaviour
     public virtual void prepareUI() { }
     public void showPickupUI()
     {
-
+        if (!canShowInteractUI())
+        {
+            return;
+        }
         if (isInteractiveDisabled)
         {
             return;

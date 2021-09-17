@@ -20,7 +20,7 @@ public class Talkable : InteractiveItem
         interactiveText.text = "Talk to " + npc.info.displayName;
     }
 
-    protected override bool canInteract()
+    protected override bool canShowInteractUI()
     {
         return npc.isVisible;
     }

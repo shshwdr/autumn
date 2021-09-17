@@ -49,7 +49,10 @@ public class QuestController : MonoBehaviour
     IEnumerator test()
     {
         yield return new WaitForEndOfFrame();
-        questParent.SetActive(false);
-        questParent.SetActive(true);
+        if (questParent.active)
+        {
+            questParent.SetActive(false);
+            questParent.SetActive(true);
+        }
     }
 }

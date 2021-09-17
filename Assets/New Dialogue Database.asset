@@ -1186,6 +1186,20 @@ MonoBehaviour:
       value: 
       type: 0
       typeString: 
+  - id: 17
+    fields:
+    - title: Name
+      value: gotChainSaw
+      type: 0
+      typeString: 
+    - title: Initial Value
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Description
+      value: 
+      type: 0
+      typeString: 
   conversations:
   - id: 1
     fields:
@@ -1352,6 +1366,12 @@ MonoBehaviour:
       - originConversationID: 1
         originDialogueID: 0
         destinationConversationID: 1
+        destinationDialogueID: 70
+        isConnector: 0
+        priority: 2
+      - originConversationID: 1
+        originDialogueID: 0
+        destinationConversationID: 1
         destinationDialogueID: 33
         isConnector: 0
         priority: 2
@@ -1392,7 +1412,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 41.392395
+        x: 39.119675
         y: 1
         width: 160
         height: 30
@@ -1891,7 +1911,7 @@ MonoBehaviour:
         destinationDialogueID: 60
         isConnector: 0
         priority: 2
-      conditionsString: Variable[Variable["ConversantIndex"]] == Actor[Variable["ConversantIndex"]].favoriteItem
+      conditionsString: Variable["holdingItem"] == Actor[Variable["ConversantIndex"]].favoriteItem
       userScript: Actor[Variable["ConversantIndex"]].friendship = Actor[Variable["ConversantIndex"]].friendship
         + 50;
       onExecute:
@@ -1899,8 +1919,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 1231.9015
-        y: 146.90863
+        x: 1234.1742
+        y: 140.09048
         width: 160
         height: 30
     - id: 8
@@ -4511,7 +4531,12 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: CurrentQuestState("treeSound") == "returnToNPC"
-      userScript: SetQuestState("treeSound", "success");
+      userScript: 'SetQuestState("treeSound", "success");
+
+        ;
+
+        Variable["helpVillagers"]
+        = Variable["helpVillagers"] + 1'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -4589,7 +4614,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 1098.2104
+        x: 1100.4832
         y: 1221.4546
         width: 160
         height: 30
@@ -4869,7 +4894,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 1098.2104
-        y: 1419.1818
+        y: 1416.9089
         width: 160
         height: 30
     - id: 52
@@ -5277,7 +5302,7 @@ MonoBehaviour:
         destinationDialogueID: 58
         isConnector: 0
         priority: 2
-      conditionsString: Actor["Moncha"].hasTalked == true and (Variable["talkAboutKiwi"]
+      conditionsString: Actor["kiwi"].hasTalked == true and (Variable["talkAboutKiwi"]
         == false)
       userScript: Variable["talkAboutKiwi"] = true
       onExecute:
@@ -5740,7 +5765,292 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: make every one happy(WIP)
+        value: What do you think of our village!
+        type: 0
+        typeString: 
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: 
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 1
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 1
+        originDialogueID: 64
+        destinationConversationID: 1
+        destinationDialogueID: 65
+        isConnector: 0
+        priority: 2
+      conditionsString: CurrentQuestState("helpEveryone") == "grantable"
+      userScript: SetQuestState("helpEveryone", "active");
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 1798.2106
+        y: 98.72728
+        width: 160
+        height: 30
+    - id: 65
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: Love it!
+        type: 0
+        typeString: 
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: 
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 1
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 1
+        originDialogueID: 65
+        destinationConversationID: 1
+        destinationDialogueID: 67
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 1798.2106
+        y: 148.72728
+        width: 160
+        height: 30
+    - id: 67
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: That's nice! To help you blend in, I think you can talk with others
+          more and send some gift to them.
+        type: 0
+        typeString: 
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: 
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 1
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 1
+        originDialogueID: 67
+        destinationConversationID: 1
+        destinationDialogueID: 68
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 1798.2106
+        y: 198.72728
+        width: 160
+        height: 30
+    - id: 68
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: And most important, help them solve their problems!
+        type: 0
+        typeString: 
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: 
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 1
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 1
+        originDialogueID: 68
+        destinationConversationID: 1
+        destinationDialogueID: 69
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 1798.2106
+        y: 248.72728
+        width: 160
+        height: 30
+    - id: 69
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: They would help you build your house as a gift!
         type: 0
         typeString: 
       - title: Parenthetical
@@ -5767,19 +6077,369 @@ MonoBehaviour:
       falseConditionAction: Block
       conditionPriority: 2
       outgoingLinks: []
-      conditionsString: CurrentQuestState("helpEveryone") == "grantable"
-      userScript: SetQuestState("helpEveryone", "active");
+      conditionsString: 
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
         x: 1798.2106
-        y: 98.72728
+        y: 298.7273
+        width: 160
+        height: 30
+    - id: 70
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: You have helped everyone in the village and they all love you!
+        type: 0
+        typeString: 
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: 
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 1
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 1
+        originDialogueID: 70
+        destinationConversationID: 1
+        destinationDialogueID: 71
+        isConnector: 0
+        priority: 2
+      - originConversationID: 1
+        originDialogueID: 70
+        destinationConversationID: 1
+        destinationDialogueID: 72
+        isConnector: 0
+        priority: 2
+      conditionsString: CurrentQuestState("helpEveryone") == "returnToNPC" or (CurrentQuestState("helpEveryone")
+        == "success")
+      userScript: SetQuestState("helpEveryone", "active");
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 2034.5745
+        y: 103.27275
+        width: 160
+        height: 30
+    - id: 71
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 2
+        type: 0
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 0
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: Time to upgrade your house to the highest!
+        type: 0
+        typeString: 
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: 
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 1
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: CurrentQuestState("upgradeHouse") ~= "success"
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 2039.1196
+        y: 153.27275
+        width: 160
+        height: 30
+    - id: 72
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 2
+        type: 0
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 0
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: And you have upgrade your house to the best!
+        type: 0
+        typeString: 
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: 
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 1
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 1
+        originDialogueID: 72
+        destinationConversationID: 1
+        destinationDialogueID: 73
+        isConnector: 0
+        priority: 2
+      conditionsString: CurrentQuestState("upgradeHouse") == "success"
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 2243.6653
+        y: 153.27275
+        width: 160
+        height: 30
+    - id: 73
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: Congrates! Hope you'll have a great winter here!
+        type: 0
+        typeString: 
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: 
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 1
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 1
+        originDialogueID: 73
+        destinationConversationID: 1
+        destinationDialogueID: 75
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 2243.6653
+        y: 203.27275
+        width: 160
+        height: 30
+    - id: 75
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: Thanks for playing!
+        type: 0
+        typeString: 
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: 
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 1
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 2243.6653
+        y: 253.27275
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 631.8181, y: 6.8181763}
+    canvasScrollPosition: {x: 234.09082, y: 9.090759}
     canvasZoom: 0.44
   - id: 2
     fields:
@@ -8068,7 +8728,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 796.4751
-        y: 96.21675
+        y: 94.3649
         width: 160
         height: 30
     - id: 18
@@ -8277,7 +8937,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 875.0825
-        y: 361.67407
+        y: 359.8222
         width: 160
         height: 30
     - id: 21
@@ -8624,7 +9284,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 829.96295
-        y: 451.8519
+        y: 448.1483
         width: 160
         height: 30
     - id: 26
@@ -9178,7 +9838,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 4
+        originDialogueID: 33
+        destinationConversationID: 4
+        destinationDialogueID: 25
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: 
       onExecute:
@@ -9187,7 +9853,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 300.3704
-        y: 645.9259
+        y: 642.2222
         width: 160
         height: 30
     - id: 34
@@ -9254,8 +9920,9 @@ MonoBehaviour:
         destinationDialogueID: 41
         isConnector: 0
         priority: 2
-      conditionsString: CurrentQuestState("treeSound") == "active"
-      userScript: 
+      conditionsString: CurrentQuestState("treeSound") == "active" and  (Variable["gotChainSaw"]
+        == false)
+      userScript: Variable["gotChainSaw"] = true
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -9337,7 +10004,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 575.16125
-        y: 636.1289
+        y: 637.9808
         width: 160
         height: 30
     - id: 36
@@ -9393,7 +10060,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 4
+        originDialogueID: 36
+        destinationConversationID: 4
+        destinationDialogueID: 25
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: 
       onExecute:
@@ -9402,7 +10075,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 575.16125
-        y: 686.12897
+        y: 687.98083
         width: 160
         height: 30
     - id: 37
@@ -9469,7 +10142,10 @@ MonoBehaviour:
       userScript: 'Actor["hikeguy"].hasFinishedEvent = true;
 
         SetQuestState("forestSound",
-        "success")'
+        "success");
+
+        Variable["helpVillagers"] = Variable["helpVillagers"]
+        + 1'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -9674,7 +10350,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 4
+        originDialogueID: 40
+        destinationConversationID: 4
+        destinationDialogueID: 25
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: 
       onExecute:
@@ -9817,7 +10499,7 @@ MonoBehaviour:
         destinationDialogueID: 53
         isConnector: 0
         priority: 2
-      conditionsString: CurrentQuestState("forestSound") == "active"
+      conditionsString: CurrentQuestState("findAFriend") == "active"
       userScript: 
       onExecute:
         m_PersistentCalls:
@@ -9825,7 +10507,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 1331.8518
-        y: 499.03223
+        y: 495.32855
         width: 160
         height: 30
     - id: 43
@@ -10058,11 +10740,11 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 1
+        value: 5
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 5
+        value: 1
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -10202,11 +10884,11 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 1
+        value: 5
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 5
+        value: 1
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -10313,7 +10995,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 4
+        originDialogueID: 49
+        destinationConversationID: 4
+        destinationDialogueID: 25
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: 
       onExecute:
@@ -10603,7 +11291,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 1330
-        y: 549.0322
+        y: 547.1804
         width: 160
         height: 30
     - id: 54
@@ -10873,7 +11561,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 4
+        originDialogueID: 57
+        destinationConversationID: 4
+        destinationDialogueID: 25
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: Variable["aFriend"] = 1
       onExecute:
@@ -11011,7 +11705,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 4
+        originDialogueID: 59
+        destinationConversationID: 4
+        destinationDialogueID: 25
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: 
       onExecute:
@@ -11024,7 +11724,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 1.8517761, y: 0}
+    canvasScrollPosition: {x: 283.3334, y: 268.5186}
     canvasZoom: 0.54
   - id: 5
     fields:
@@ -11272,7 +11972,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 1335.4009
-        y: 145.7422
+        y: 143.70137
         width: 160
         height: 30
     - id: 12
@@ -11408,7 +12108,7 @@ MonoBehaviour:
         destinationDialogueID: 14
         isConnector: 0
         priority: 2
-      conditionsString: Variable[Variable["ConversantIndex"]] == Actor[Variable["ConversantIndex"]].favoriteItem
+      conditionsString: Variable["holdingItem"] == Actor[Variable["ConversantIndex"]].favoriteItem
       userScript: Actor[Variable["ConversantIndex"]].friendship = Actor[Variable["ConversantIndex"]].friendship
         + 50;
       onExecute:
@@ -11416,8 +12116,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 1496.1602
-        y: 242.57764
+        x: 1498.2009
+        y: 236.4552
         width: 160
         height: 30
     - id: 14
@@ -11482,7 +12182,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 1414.0083
-        y: 406.12186
+        y: 399.99936
         width: 160
         height: 30
     - id: 15
@@ -12889,10 +13589,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 'CurrentQuestState("kite") == "returnToNPC" '
-      userScript: 'SetQuestState("kite", "success")
-
-        Actor["tuuli"].hasFinishedEvent
-        = true'
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -12963,7 +13660,13 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: 
+      userScript: 'SetQuestState("kite", "success")
+
+        Actor["tuuli"].hasFinishedEvent
+        = true;
+
+        Variable["helpVillagers"] = Variable["helpVillagers"] +
+        1'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -13952,7 +14655,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
+    canvasScrollPosition: {x: 102.0408, y: 397.95917}
     canvasZoom: 0.49
   - id: 6
     fields:
@@ -16082,14 +16785,18 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 'CurrentQuestState("surviveWinter") == "returnToNPC" '
-      userScript: SetQuestState("surviveWinter", "success")
+      userScript: 'SetQuestState("surviveWinter", "success");
+
+
+        Variable["helpVillagers"]
+        = Variable["helpVillagers"] + 1'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
         x: 288.06448
-        y: 750.6452
+        y: 747.41943
         width: 160
         height: 30
     - id: 55
@@ -16937,7 +17644,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
+    canvasScrollPosition: {x: 0, y: 370.96777}
     canvasZoom: 0.31
   - id: 7
     fields:
@@ -18924,7 +19631,13 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: SetQuestState("anotherNocturnal", "success")
+      userScript: 'SetQuestState("anotherNocturnal", "success");
+
+        Actor["kiwi"].hasFinishedEvent
+        = true;
+
+        Variable["helpVillagers"] = Variable["helpVillagers"] +
+        1'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -19143,7 +19856,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
+    canvasScrollPosition: {x: 0, y: 310.5263}
     canvasZoom: 0.38
   - id: 8
     fields:
@@ -21199,7 +21912,11 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: SetQuestState("anotherJob", "success")
+      userScript: 'SetQuestState("anotherJob", "success");
+
+
+        Variable["helpVillagers"]
+        = Variable["helpVillagers"] + 1'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -21417,7 +22134,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
+    canvasScrollPosition: {x: 0, y: 352.63156}
     canvasZoom: 0.38
   - id: 9
     fields:
@@ -22747,7 +23464,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 458.88885
-        y: 431.11115
+        y: 428.88892
         width: 160
         height: 30
     - id: 45
@@ -24019,7 +24736,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 602.22205, y: 159.5556}
+    canvasScrollPosition: {x: 215.55542, y: 104.44452}
     canvasZoom: 0.45
   - id: 10
     fields:
@@ -24128,19 +24845,19 @@ MonoBehaviour:
         destinationConversationID: 10
         destinationDialogueID: 26
         isConnector: 0
-        priority: 2
+        priority: 3
       - originConversationID: 10
         originDialogueID: 0
         destinationConversationID: 10
         destinationDialogueID: 30
         isConnector: 0
-        priority: 2
+        priority: 3
       - originConversationID: 10
         originDialogueID: 0
         destinationConversationID: 10
         destinationDialogueID: 35
         isConnector: 0
-        priority: 2
+        priority: 4
       - originConversationID: 10
         originDialogueID: 0
         destinationConversationID: 10
@@ -24152,7 +24869,7 @@ MonoBehaviour:
         destinationConversationID: 10
         destinationDialogueID: 43
         isConnector: 0
-        priority: 2
+        priority: 3
       - originConversationID: 10
         originDialogueID: 0
         destinationConversationID: 10
@@ -24164,7 +24881,7 @@ MonoBehaviour:
         destinationConversationID: 10
         destinationDialogueID: 54
         isConnector: 0
-        priority: 2
+        priority: 3
       conditionsString: 
       userScript: 
       onExecute:
@@ -24173,7 +24890,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 22
-        y: 34
+        y: 30.428574
         width: 160
         height: 30
     - id: 26
@@ -26005,7 +26722,11 @@ MonoBehaviour:
       userScript: 'SetQuestState("whoStolePumpkin", "success");
 
         Actor["farmer"].hasFinishedEvent
-        = true'
+        = true;
+
+
+        Variable["helpVillagers"] = Variable["helpVillagers"] +
+        1'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -26146,7 +26867,8 @@ MonoBehaviour:
         destinationDialogueID: 55
         isConnector: 0
         priority: 2
-      conditionsString: CurrentQuestState("anotherNocturnal") == "active"
+      conditionsString: CurrentQuestState("anotherNocturnal") == "active" and CurrentQuestState("whoStolePumpkin") 
+        == "success"
       userScript: 
       onExecute:
         m_PersistentCalls:
@@ -26154,7 +26876,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 554.1428
-        y: 457.21426
+        y: 455.42856
         width: 160
         height: 30
     - id: 55
@@ -27287,7 +28009,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 42.857178, y: 210.78572}
+    canvasScrollPosition: {x: 0, y: 0}
     canvasZoom: 0.56
   - id: 11
     fields:
@@ -28623,7 +29345,11 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: SetQuestState("findAFriend", "success")
+      userScript: 'SetQuestState("findAFriend", "success");
+
+
+        Variable["helpVillagers"]
+        = Variable["helpVillagers"] + 1'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -28694,7 +29420,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 511.0811
+        x: 513.7838
         y: 398.37842
         width: 160
         height: 30
@@ -29309,7 +30035,7 @@ MonoBehaviour:
       type: 5
       typeString: CustomFieldType_Actor
     - title: Conversant
-      value: 2
+      value: 11
       type: 5
       typeString: CustomFieldType_Actor
     overrideSettings:
@@ -29357,7 +30083,7 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 2
+        value: 11
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -29428,7 +30154,7 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 2
+        value: 11
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -29495,7 +30221,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 2
+        value: 11
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -29570,7 +30296,7 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 2
+        value: 11
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -29637,7 +30363,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 2
+        value: 11
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -29712,7 +30438,7 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 2
+        value: 11
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -29781,7 +30507,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 2
+        value: 11
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -29852,7 +30578,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 2
+        value: 11
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -29923,7 +30649,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 2
+        value: 11
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant

@@ -58,6 +58,19 @@ public class QuestCell : MonoBehaviour
                 case "metNPC":
                         entries[i].GetComponentInChildren<TMP_Text>().text = entry.text;
                     break;
+                case "fullFriendshipAmount":
+                    int fullFriendshipAmount = 0;
+                    foreach (var npc in NPCManager.Instance.npcDict.Keys)
+                    {
+                        if (DialogueLua.GetActorField(npc, "friendship").asInt >= 100)
+                        {
+                            fullFriendshipAmount += 1;
+                        }
+                    }
+
+                    entries[i].GetComponentInChildren<TMP_Text>().text = string.Format(entry.text, fullFriendshipAmount, entry.amount);
+
+                    break;
             }
             if (entry.state == QuestState.success)
             {
@@ -77,6 +90,7 @@ public class QuestCell : MonoBehaviour
 
             entries[i].GetComponentInChildren<TMP_Text>().text = string.Format(returnToNPCString, NPCManager.Instance.npcDict[info.returnNPC].displayName);
 
+            entries[i].GetComponentInChildren<TMP_Text>().color = Color.white;
             i++;
         }
         for (; i < entries.Count; i++)

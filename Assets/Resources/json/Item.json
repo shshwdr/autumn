@@ -36,48 +36,6 @@
         "pickupTime":4
       },
       {
-        "name": "rock",
-        "displayName":"Rock",
-        "description":"Small rocks, stonger and fire proof",
-        "pickup":"Dig Rocks",
-        "animation":"pickaxe",
-        "conditionInventory":"pickaxe",
-        "isImportant":true,
-        "pickupTime":2
-      },
-      {
-        "name": "saw",
-        "displayName":"Saw",
-        "description":"Can cut sticks down from tree",
-        "pickup":"Pickup Rake",
-        "isImportant":true,
-        "pickupTime":2
-      },
-      {
-        "name": "chainsaw",
-        "displayName":"ChainSaw",
-        "description":"Can cut down the whole tree",
-        "pickup":"Pickup Rake",
-        "isImportant":true,
-        "pickupTime":3
-      },
-      {
-        "name": "pickaxe",
-        "displayName":"Pick Axe",
-        "description":"Can dig stones",
-        "pickup":"Pickup Rake",
-        "isImportant":true,
-        "pickupTime":0.3
-      },
-      {
-        "name": "fishrod",
-        "displayName":"Fish rod",
-        "description":"Can be used for fishing",
-        "pickup":"Pickup Rake",
-        "isImportant":true,
-        "pickupTime":0.3
-      },
-      {
         "name": "carrot",
         "displayName":"Carrot",
         "description":"Not my favorite vegetable.",
@@ -135,6 +93,16 @@
         "pickupTime":1
       },
       {
+        "name": "rock",
+        "displayName":"Rock",
+        "description":"Small rocks, stonger and fire proof",
+        "pickup":"Dig Rocks",
+        "animation":"pickaxe",
+        "conditionInventory":"pickaxe",
+        "isImportant":true,
+        "pickupTime":2
+      },
+      {
         "name": "footprint",
         "displayName":"Leave",
         "description":"Leave of maple",
@@ -143,6 +111,46 @@
         "variable":"foundFootprint",
         "noItemCollected":true,
         "pickupTime":1
+      },
+      {
+        "name": "rake",
+        "displayName":"Rake",
+        "description":"Can cut sticks down from tree",
+        "pickup":"Pickup Rake",
+        "isImportant":true,
+        "pickupTime":2
+      },
+      {
+        "name": "saw",
+        "displayName":"Saw",
+        "description":"Can cut sticks down from tree",
+        "pickup":"Pickup Rake",
+        "isImportant":true,
+        "pickupTime":2
+      },
+      {
+        "name": "chainsaw",
+        "displayName":"ChainSaw",
+        "description":"Can cut down the whole tree",
+        "pickup":"Pickup Rake",
+        "isImportant":true,
+        "pickupTime":3
+      },
+      {
+        "name": "pickaxe",
+        "displayName":"Pick Axe",
+        "description":"Can dig stones",
+        "pickup":"Pickup Rake",
+        "isImportant":true,
+        "pickupTime":0.3
+      },
+      {
+        "name": "fishrod",
+        "displayName":"Fish rod",
+        "description":"Can be used for fishing",
+        "pickup":"Pickup Rake",
+        "isImportant":true,
+        "pickupTime":0.3
       }
     ]
   }
